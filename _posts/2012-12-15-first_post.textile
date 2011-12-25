@@ -1,0 +1,6 @@
+---
+layout: default
+title: Entry 1
+category: random
+---
+This will be a collection of data, comments, ideas, summaries, links, babbling, and random whatnots which somehow relates to my thesis work at "Tuenti":http://tuenti.com. 
