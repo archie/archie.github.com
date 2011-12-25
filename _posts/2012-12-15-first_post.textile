@@ -4,3 +4,7 @@ title: Entry 1
 category: random
 ---
 This will be a collection of data, comments, ideas, summaries, links, babbling, and random whatnots which somehow relates to my thesis work at "Tuenti":http://tuenti.com. 
+
+!http://www.hodique.info/lib/exe/fetch.php?hash=e2d00b&media=http%3A%2F%2Fwww.phdcomics.com%2Fcomics%2Farchive%2Fphd040207s.gif(Not there yet)!
+
+Expected end-date: mid-June.

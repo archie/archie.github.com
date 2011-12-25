@@ -1,0 +1,7 @@
+---
+layout: default
+title: Entry 2
+category: references
+tags: architecture, real-time
+---
+I found "this post":http://horovits.wordpress.com/2011/12/19/architecting-massively-scalable-near-real-time-risk-analysis-solutions/ today on how to architect near real-time systems for risk analysis. The problem seem similar to recommendation engines which uses a lot of history data that rarely change, and only little data which change frequently.

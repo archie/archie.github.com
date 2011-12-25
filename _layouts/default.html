@@ -16,7 +16,22 @@ Released   : 20110227
    <meta name="description" content="" />
    <meta name="author" content="Marcus Ljungblad" />
    <title>{{ page.title }}</title>
-   <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+   <link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+   <link href="css/syntax.css" rel="stylesheet" type="text/css" media="screen" />
+   <link href="css/jquery.tweet.css" rel="stylesheet" type="text/css" media="screen" />
+   <script language="javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
+   <script language="javascript" src="/js/jquery.tweet.js" type="text/javascript"></script>
+   <script type='text/javascript'>
+     $(document).ready(function(){
+      $(".tweet").tweet({
+       avatar_size: 40,
+       count: 5,
+       query: "mljungblad",
+       loading_text: "Loading tweets...",
+       refresh_interval: 10
+      });
+     });
+   </script>
 </head>
 <body>
 
@@ -54,8 +69,9 @@ Released   : 20110227
 	      <p>This is a page about my thesis work.</p>
 	    </li>
 	    <li>
-	      <h2>Classes of Info</h2>
-	      <p>Maybe there will be some more information here.</p>
+	      <h2>Twitter</h2>
+	      <!-- latest tweets will be added by jquery here -->
+	      <div id="tweet"></div>
 	    </li>
 	  </ul>
 	</div>
