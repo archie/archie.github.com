@@ -1,0 +1,9 @@
+---
+layout: default
+title: Entry 3
+category: references
+tags: architecture, aggregation, facebook
+---
+Facebook built Timeline by "recomputing tonnes of data":https://www.facebook.com/notes/facebook-engineering/building-timeline-scaling-up-to-hold-your-life-story/10150468255628920 into a common data format. Aggregators are used to query multiple databases simultaneously. Reminds me of Dremel which Google developed. 
+
+Moving to Barcelona in less than a week. Excited.
