@@ -3,7 +3,7 @@ layout: default
 title: Summary of Toward the Next Generation of Recommender Systems
 category: summaries
 ---
-The paper surveys the recommendation research area from around the mid-90s to around 2005, when the paper is published. The main contribution is a table classifying existing deployments and research in content-based, collaborative, and hybrid recommendation systems. 
+"The paper surveys the recommendation research area from around the mid-90s to around 2005":http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.107.2790, when the paper is published. The main contribution is a table classifying existing deployments and research in content-based, collaborative, and hybrid recommendation systems. 
 
 The general algorithm may be described as RelevanceOfItem = User x Item, or utility(user,item). Due to the size of this set, it is usually not computed for the whole user space. Instead there are a number of predictions available. These predictions are calculated using either a memory (sometimes called heuristic) method or a model-based method to compute the relevance of items for users. 
 
