@@ -1,0 +1,33 @@
+---
+layout: default
+title: Summary of Toward the Next Generation of Recommender Systems
+category: summaries
+---
+The paper surveys the recommendation research area from around the mid-90s to around 2005, when the paper is published. The main contribution is a table classifying existing deployments and research in content-based, collaborative, and hybrid recommendation systems. 
+
+The general algorithm may be described as RelevanceOfItem = User x Item, or utility(user,item). Due to the size of this set, it is usually not computed for the whole user space. Instead there are a number of predictions available. These predictions are calculated using either a memory (sometimes called heuristic) method or a model-based method to compute the relevance of items for users. 
+
+*Collaborative Methods*
+These recommendation systems uses the ratings of other users to produce a relevance set for a particular user. This is done with a user-similarity function which can be defined in several ways. The similarity is usually computed as the distance between two users and this value is used as a weight for the relevance calculation of an item which the user has not yet rated. One technique to find similarity between two users is to look at the items they have both rated previously. However, the calculations should be normalised (see formula 10b in the paper) to account for the fact that different users use, for example, a rating scale differently. 10 doesn't always mean 10. 
+
+Two graph-theoretic approaches to collaborative filtering include the Pearson coefficient and the cosine-based approach. 
+
+Calculating user similarities can be expensive and thus one approach is to precompute these values for all users (recomputing them once in a while) and calculating the ratings much more efficiently when the user actually asks for them. 
+
+Predictions can also be made using a model-based technique. This may be probabilistic, for example using clustering or Bayesian networks. Making the model representative is challenging, and clustering may, for example, only limit a user to one single cluster. 
+
+Machine learning techniques have also been proposed to address the nature of evolving data. 
+
+*Issues with collaborative methods*
+ * New users may have no or very little similarity to existing users. Relates to bootstrapping data. Take generalised sets? 
+ * New items relies on users rating them. Some weird items may be rated very high but only by a small set of users and thus have less total influence. 
+ * Sparsity, i.e there is not enough data. Adding context or using more profile data about the users is a way of overcoming this problem. The paper makes a case about using demographic data. 
+
+There are also hybrid versions that can address some of the short-comings in each of the two main methods.
+
+
+*Comments*
+ * OLAP - check the paper Phillipe mentioned in his talk. 
+ * Bootstrapping - either make some educated guesses or make sure you have data from the users. 
+ * Would be fun to hack a small simple recommendation system just to get the gist of it. 
+ * The paper makes a number of references to scalability issues with recommendation systems but provide no discussion in the paper itself. 

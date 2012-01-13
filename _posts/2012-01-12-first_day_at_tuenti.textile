@@ -1,0 +1,28 @@
+---
+layout: default
+title: First day at Tuenti
+category: random
+---
+Got impressed. 
+
+Got a workplace. 
+
+Got introduced. 
+
+Forgot everyone's names. 
+
+Except Toni (es), my colleague who is an expert on recommendation systems, Tomasz (swe), the Barcelona boss, Albert (es), my supervisor in the product team responsible for the recommendation system development, Einar (swe), also in the team, and Virginia (ar), the very helpful office assistant. I'll learn the other names eventually. 
+
+Got hungry. 
+
+Had an exceptionally late lunch by Swedish standards. 
+
+Began reading a survey paper on recommendation systems. More info to come. 
+
+Got impressed. 
+
+Had a product brainstorm meeting. I had no clue about anything. 
+
+Still have no clue. 
+
+Is happy. 
