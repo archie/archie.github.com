@@ -1,0 +1,9 @@
+---
+layout: default
+title: Time Computing vs Accuracy
+category: ideas
+---
+
+Algorithm suggested at the moment is using Alternating Least Squares (ALS) to optimise the result. ALS is easy to parallelise, but may not be as accurate as "Stochastic gradient descent":http://sifter.org/~simon/journal/20061211.html. 
+
+Thus, one area to explore is how can computation time increase accuracy? Or, conversely, if we're short on time, degrading the accuracy gracefully. 
