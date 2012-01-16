@@ -1,13 +1,15 @@
 ---
 layout: default
 title: Singular Value Decomposition
-category: quotes
+category: maths
 ---
 While reading up on how singular value decomposition works I found this quote by "Simon Funk":http://sifter.org/~simon/journal/20061211.html 
 
 > "In today's foray, that model is called singular value decomposition, which is just a fancy way of saying what I've already eluded to above." 
 
-The intuition is that you have matrix and you want to find two matrices that, when composed together, yield the same original matrix with a minimal error of the approximation.
+Nice to hear other people shudder about how we try to over-complicate a lot of things, especially in research and marketing departments.
+
+Anyway, the intuition behind SVD is that you have matrix and you want to find two matrices that, when composed together, yield the same original matrix with a minimal error of the approximation.
 
 Some more references: 
  * Koren, Y., R. Bell, and C. Volinsky. “Matrix Factorization Techniques for Recommender Systems.” Computer 42, no. 8 (August 2009): 30-37.
