@@ -1,0 +1,30 @@
+---
+layout: default
+title: More Matrix Factorization
+category: maths
+---
+In order to better understand matrix factorization[1] I wanted to experiment with it in code. I find code much easier to understand than the Greek symbols in papers. Plus, you can tinker with it. 
+
+A little digging gave me "Albert Au Yeung's matrix factorization tutorial":http://www.quuxlabs.com/blog/2010/09/matrix-factorization-a-simple-tutorial-and-implementation-in-python/ with some python code. His code, to me, wasn't very easily understood, and therefore, after some refactoring this is what I came up with. It can surely be made even easier to understand. For more details of the maths, read his post. 
+
+<script src="https://gist.github.com/1626941.js"> </script>
+
+The code assumes users are rating items. When the rating is defined as @0@ in the input matrix, the user has not yet rated the item. The goal, hence, is to predict those values by discovering to matrices, which product, approximates the missing ratings. Obviously, the approximation is based on the already existing ratings. Thus, when calculating the mean squared error, this is done by comparing already existing ratings against predicted ratings. When the approximation error is small enough, or when @MaxSteps@ is reached, we quit and take the dot product of the two resulting matrices to yield the predicted ratings for all users and movies. 
+
+It is not intuitive where the @InitialUserFeatures@ and @InitialMovieFeatures@ come from. In collaborative filtering algorithms, it is assumed that each user has some initial preferences, for example, based on their previous actions. However, in a new system where no previous data exists, i.e when bootstrapping, this can be merely an educated guess or made up by implicit data. In the example above each user's preferences are therefore randomised for the @NumberOfLatentFeatures@ we are trying to uncover. 
+
+The result of one example run is: 
+<pre>
+[[ 4.98400885  2.96534946  3.77717477  0.99965545]
+ [ 3.97376149  2.37641209  3.21611904  0.99749797]
+ [ 1.03827929  0.90545444  5.63804813  4.96223337]
+ [ 0.9813382   0.81234711  4.59620317  3.97213023]
+ [ 1.49546775  1.11543839  4.93859812  4.0289544 ]]
+[Finished]
+</pre>
+
+If the ratings are from 1-5, it is not very useful that the algorithm estimates the rating 5.64 in one particular case. Since a predicted value may exceed 5, but never be less than 0, it would be good to add some constraints on the final predicted values. 
+
+I'm considering rewriting the code to suite a much larger dataset (100k+ users) next. 
+
+fn1. Matrix Factorization is probably part of a math's course we never had as Software Engineering students at ITU. Wish I had more maths in undergrad. 

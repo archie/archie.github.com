@@ -14,6 +14,11 @@ As far as I understand, the intuition behind SVD (as applied to estimating ratin
 *Alternating Least Squares*
 However, a complication arises when the matrix you are trying to decompose is not complete. Or, in other words, when there are some fields in the matrix which are empty or undefined SVD is insufficient for finding the composing matrices. In this case Alternating Least Squares (ALS) is the way to go. More to come about this.
 
+Also, here is another remarkable quote I found in a paper from Zhou et al.
+
+bq. "We have found parallel Matlab to be flexible and efficient, and very straightforward to program. Thus, from our experience, it seems to be a strong candidate for widespread, easily scalable parallel/distributed computing [compared to Hadoop and MapReduce]."
+
 Some more references: 
+ * Zhou, Yunhong, Dennis Wilkinson, Robert Schreiber, and Rong Pan. “Large-Scale Parallel Collaborative Filtering for the Netflix Prize.” PROC. 4TH INT’L CONF. ALGORITHMIC ASPECTS IN INFORMATION AND MANAGEMENT, LNCS 5034 (2008): 337--348.
  * Koren, Y., R. Bell, and C. Volinsky. “Matrix Factorization Techniques for Recommender Systems.” Computer 42, no. 8 (August 2009): 30-37.
  * "How does SVD work":http://www.puffinwarellc.com/index.php/news-and-articles/articles/30-singular-value-decomposition-tutorial.html?start=1
