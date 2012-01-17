@@ -3,13 +3,17 @@ layout: default
 title: Singular Value Decomposition
 category: maths
 ---
-While reading up on how singular value decomposition works I found this quote by "Simon Funk":http://sifter.org/~simon/journal/20061211.html 
+While reading up on how Singular Value Decomposition (SVD) works I found this quote by "Simon Funk":http://sifter.org/~simon/journal/20061211.html 
 
-> "In today's foray, that model is called singular value decomposition, which is just a fancy way of saying what I've already eluded to above." 
+bq. "In today's foray, that model is called singular value decomposition, which is just a fancy way of saying what I've already eluded to above." 
 
 Nice to hear other people shudder about how we try to over-complicate a lot of things, especially in research and marketing departments.
 
-Anyway, the intuition behind SVD is that you have matrix and you want to find two matrices that, when composed together, yield the same original matrix with a minimal error of the approximation.
+As far as I understand, the intuition behind SVD (as applied to estimating ratings) is that you have matrix and you want to find two matrices that, when multiplied, predict the actual matrix with a minimal error of the approximation. This can be done in iterations to improve the accuracy of the prediction, and the nice thing about SVD is that it will automagically converge on the most optimal solution. 
+
+*Alternating Least Squares*
+However, a complication arises when the matrix you are trying to decompose is not complete. Or, in other words, when there are some fields in the matrix which are empty or undefined SVD is insufficient for finding the composing matrices. In this case Alternating Least Squares (ALS) is the way to go. More to come about this.
 
 Some more references: 
  * Koren, Y., R. Bell, and C. Volinsky. “Matrix Factorization Techniques for Recommender Systems.” Computer 42, no. 8 (August 2009): 30-37.
+ * "How does SVD work":http://www.puffinwarellc.com/index.php/news-and-articles/articles/30-singular-value-decomposition-tutorial.html?start=1
