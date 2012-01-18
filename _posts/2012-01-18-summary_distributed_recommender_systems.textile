@@ -1,0 +1,16 @@
+---
+layout: default
+title: Summary of "A case for distributed recommender system architecture"
+category: summaries
+---
+__This paper makes it to my top-ten list of worst research papers ever.__ 
+
+The authors, correctly, identifies that historically recommender systems are made sequential, have difficulties scaling, and are often built for specific purposes. With this outset, they propose four architectural techniques: network centric, client-server, layer, and component patterns, which magically will solve all issues of recommender systems. 
+
+While the abstract and introduction starts of fine, until you check the references that it uses to support some of the claims the authors are making, the solution proposed offers no novelty, implementation, or evaluation. It is purely hypothetical. The authors seem to have a superficial understanding of recommendation algorithms which are barely touched upon, let alone described, in the paper. Moreover, the claims made in the introduction are based on recommendation research from the early 90s and the paper was published in 2010. 
+
+Unfortunately, nowhere is it explained how the proposed patterns are distributing the load of commercial-scale (hundreds of thousands or more entries) recommendation datasets. And they, likely, haven't heard of "Hadoop":http://hadoop.apache.org. 
+
+On the upside of things, there seem to be plenty of room for actually providing something substantial in the field of scalable and fault-tolerant recommender systems. 
+
+Next paper: Amazon's item-to-item recommendations.
