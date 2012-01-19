@@ -1,0 +1,35 @@
+---
+layout: default
+title: Summary of "Google News Personalization Scalable Online Collaborative Filtering"
+category: summaries
+---
+
+The authors describe three algorithms for content-agnostic recommendations and the system architecture employed to serve personalised news on "Google News":http://news.google.com. Their contribution is distinct from earlier CF research in two ways: the massive scale and high item (news) churn.
+
+CF algorithms, as mentioned in a previous post, can be categorised in two areas: memory-based and model-based. The former is significantly hard to deploy on massive item-sets since (surpise) everything needs to be kept in memory. This quickly becomes unfeasible. In Google News this is a an online covisitation algortihm which only updates the affected news items, and thus does not need to be maintained in memory. Two other model-based algorithms, both calculating clusters, are computed offline. 
+
+The engineers divided the system in three parts: 
+
+ # *An offline part* which is basically MapReduce jobs running periodically to compute user clusters based on their click history.
+ # *An online update part* that continuously updates the statistics when a user clicks a news item. 
+ # *An online retrieval part* which fetches and computes news recommendations from the statistics and clusters stored. 
+
+The system is split into five components: 
+ 
+ # *Front-ends* which listens to registered user activity. The front-end passes the data on to either of the two following components. 
+ # The *Statistics engine* updates the user clusters and story items based on the clicks received. All information is stored in one of two tables: a user table and a story table. 
+ # The third server is the *prediction engine* which, given a set of user options (for example: language used, regional settings, and so on) and a few news items from these settings, computes a set of ranked stories. The top-K ones are presented to the user. The prediction engine fetches information from both tables and caches them for an "appropriate" time-window. 
+ # The *BigTable tables* which stores user and story statistics. 
+ ## The users are indexed by id and contains two columns: a list of clusters the user belongs to, and click history. 
+ ## The story table, indexed by story-id, contains how many times a story was clicked from users in each cluster, and how many times the story was visited along with another story[1]. 
+ # The *offline component* operates on a "few months" of user data to create user clusters using the two model-based algorithms. 
+
+As components are split, the system can continue to serve personalised requests even if, for example, the statistics engine breaks. Multiple instances of each component increases the availability. 
+
+Finally, the system serves prediction requests in less than 100 ms. There are also evaluation of the prediction accuracy, but that is not as important now.  
+
+*Reference:*
+Das, Abhinandan S., Mayur Datar, Ashutosh Garg, and Shyam Rajaram. “Google news personalization: scalable online collaborative filtering.” __In Proceedings of the 16th international conference on World Wide Web__, 271–280. WWW  ’07. New York, NY, USA: ACM, 2007. http://doi.acm.org/10.1145/1242572.1242610.
+
+
+fn1. A story is covisited if a user clicks two stories after each other within a specified time-window.  
