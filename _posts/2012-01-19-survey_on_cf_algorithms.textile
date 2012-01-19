@@ -1,0 +1,18 @@
+---
+layout: default
+title: Survey paper on CF recommendation algorithms
+category: notes
+---
+
+Found this paper titled "A Survey of Collaborative Filtering Techniques":http://www.hindawi.com/journals/aai/2009/421425/ from 2009. It is more recent than the previous survey paper I found and contains some useful references to the challenges with CF techniques. 
+
+One particular challenge with recommendation algorithms is to scale them to tens of millions of users and millions of items. Most research predating the "Netflix Prize":http://www.netflixprize.com/ considers "large-scale" to be several orders of magnitude smaller than millions. Even the Netflix data is small in comparison to the datasets used at Google News or Amazon. Essentially @O(n)@ is too slow for those numbers. 
+
+Several techniques have been proposed to address the scalability issue. In particular: 
+
+ * Doing matrix factorization once and updating it online (specifically Singular Value Decomposition) using projections. 
+ * Using Hadoop MapReduce. While some algorithms can be parallelised and made to support MapReduce, it doesn't solve the freshness of the data if it changes quickly. Something web data have a tendency of doing. 
+ * Intermediate approaches have also been proposed. For example, instead of computing the top K recommendations on the entire user database, the users are first clustered (as in Google News), and recommendations are calculated on the fly using these smaller clusters. 
+ * The above paper mentions Pearson correlation (memory based algorithm) as a viable alternative to scale. I'm not convinced, however. If the data is too large to store in memory it will be too slow as reads have to be made from disk instead. 
+ 
+I haven't read the entire survey, but it seems to be covering quite a few of the collaborative filtering techniques that I've seen mentioned in several other papers.
