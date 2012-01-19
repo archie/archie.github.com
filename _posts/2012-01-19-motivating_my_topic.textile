@@ -1,0 +1,11 @@
+---
+layout: default
+title: Motivating my thesis topic
+category: notes
+---
+
+Found the following quote in another survey paper on "Recommender systems":http://www.prem-melville.com/publications/recommender-systems-eml2010.pdf from 2010.
+
+bq. The architecture of recommender systems and their evaluation on real-world problems is an active area of research.
+
+\o/
