@@ -1,0 +1,41 @@
+---
+layout: default
+title: Mahout vs GraphLab
+category: notes
+---
+
+h1. Mahout
+
+Is "a framework for machine learning":http://mahout.apache.org and part of the Apache Foundation. A sub-framework of Mahout is Taste used specifically for collaborative filtering. 
+
+The Taste framework comes in two tastes (pun intended): 
+ # *Online* where recommendations are computed on demand, typically on smaller datasets. This version is easily integrated in existing Java applications either by using on of the existing Recommender algorithms. Online computations are done in memory (as long as they fit) these can be updated more frequently by, for example, pushing new .csv files, or using data from a SQL database. 
+ # *Offline* which utilise "Apache Hadoop":http://hadoop.apache.org to achieve scalability. Mahout points out, however, that "map-reduce tasks doesn't logically fit all types of algorithms":http://tdunning.blogspot.com/2009/01/real-time-decision-making-using-map.html and are hence exploring alternative distribution methods too. 
+
+The "recommender beginner's wiki":https://cwiki.apache.org/MAHOUT/recommender-first-timer-faq.html points out that datasets containing up to 100M user-item ratings should be computable online using a decent server. 
+
+Not all algorithms provided by Taste are available as Hadoop implementations. There is an "iterative algorithm for matrix factorization":https://cwiki.apache.org/MAHOUT/collaborative-filtering-with-als-wr.html using Alternating Least Squares. Iterative algorithms incur significant overhead when written as MapReduce jobs in Hadoop (a better way could be to model the computation using bulk synchronous processing, like Pregel). 
+
+Building a system which combines Mahout's offline and online capabilities seems yet to be done. Basically since you want your online computations to be O(1) I'm not sure that Mahout is a good fit. It might be easier to do online updates on data on the side, and possibly use Mahout for the offline computations.  
+
+Decent introductions to Mahout can be found "here":http://www.ibm.com/developerworks/java/library/j-mahout/ and "here":http://www.searchworkings.org/blog?p_p_id=141_INSTANCE_7hQd&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&p_p_col_id=column-2&p_p_col_pos=1&p_p_col_count=3&p_r_p_564233524_tag=mahout.
+
+This page has information about "the recommender architecture":https://cwiki.apache.org/MAHOUT/recommender-documentation.html and how to build your own recommenders. The architecture does not provide an intuitive explanation for how the collaborative framework connects to Hadoop. Based on a brief tour "in the source code":https://svn.apache.org/repos/asf/mahout/trunk/core/src/main/java/org/apache/mahout/common/AbstractJob.java it looks like Mahout provides a "Hadoop Job Factory" which generates and submits map- and reduce tasks (aka jobs) to your Hadoop cluster.
+
+Mahout has also been shown to run on "AWS Elastic MapReduce":https://cwiki.apache.org/confluence/display/MAHOUT/Mahout+on+Elastic+MapReduce which, given the readme, does not seem like a trivial task. 
+
+Foursquare provides a "pretty interesting use-case on Mahout":http://engineering.foursquare.com/2011/03/22/building-a-recommendation-engine-foursquare-style/ with extremely large datasets, and also emphasizes the fact that Mahout is geared towards industry. 
+
+h1. Graphlab
+
+On the other hand, the "Graphlab project":http://graphlab.org/ takes a quite different approach to parallel collaborative filtering (more broadly, machine learning), and is primarily used by academic institutions. 
+
+Graphlab jobs operate on a graph data structure much similar to Google's system Pregel. Computation is defined through an update-function which operates on one vertex of the graph at the time. During an update call, new update requests can be scheduled with other vertices of the graph. A central scheduler delegates vertices for processing. For a good example, see the "Graphlab implementation of Pagerank":http://graphlab.org/doxygen/html/pagerank_example.html. 
+
+Contrary to Hadoop, Graphlab is built for multi-core parallelism, although there is on-going work in making it easier to user in a distributed setup. It also seem to lack mechanisms for fault-tolerance (for example, map or reduce tasks are restarted by the master if they fail to complete). 
+
+However, Graphlab boasts that "implementing efficient and provably correct parallel machine algorithms" is easier when compared to MapReduce. Especially since computation "is not required to be transformed into an embarrassingly parallel form":http://graphlab.org/abstractiononly.pdf. It is different from Pregel in the sense that communication between vertices is implicit, and that computation is asynchronous. The latter implies that computation on a vertex will happen on the most recent available data. By ensuring that all computations are sequentially consistent, the end result data will eventually also be consistent, programs becomes easier to debug, and complexity of parallelism is reduced.
+
+h1. Summary
+
+Mahout looks like a more polished product, especially as it relies on Hadoop for scalability and distribution. Its computational model may, however, be constrained just because of the same prerequisite. It is, hence, here Graphlab excells since it is built ground up for iterative algorithms such as those used in collaborative filtering. On the downside, Graphlab lacks a production-ready distribution framework. 
