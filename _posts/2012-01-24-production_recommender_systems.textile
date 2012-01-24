@@ -1,0 +1,17 @@
+---
+layout: default
+title: Production recommender systems
+category: links
+---
+
+Here's a small collection recommender systems in production that I've come across in my background research. It is far from complete and if you know of anyone particularly interesting (especially where the datasets or item churn is extraordinary), please "drop me an e-mail":mailto:marcus@ljungblad.nu. 
+
+ * The developer's at "Foursquare made Explore":http://engineering.foursquare.com/2011/03/22/building-a-recommendation-engine-foursquare-style/ using some pretty big datasets. 
+ * At Amazon they've been doing product "item-to-item recommendations":http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?arnumber=1167344 for quite a while. "Greg Linden":http://glinden.blogspot.com is recommendation king over there. 
+ * "Google News personalises stories":http://www2007.org/papers/paper570.pdf for you based on similar user's click history. 
+ * The game-changing challenge announced by Netflix stirred up some serious activity in the research community. The "prize":http://www.netflixprize.com totaled $1M dollars. 
+ * Drupal, popular CMS system, provides a "recommendation API":http://drupal.org/project/recommender.
+ * LastFM's "Audioscrobbler" is based entirely on recommendations, but instead of improving the algorithms, "LastFM focused on extracting really good data from the users":http://en.wikipedia.org/wiki/Last.fm. That turned out quite well too.
+
+Then I've also seen Digg, StumbleUpon, Movielens, Facebook (duh), and many more mentioned, but have no links on how they work. 
+
