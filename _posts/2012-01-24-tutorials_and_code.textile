@@ -1,0 +1,9 @@
+---
+layout: default
+title: A day of tutorials and code
+category: notes
+---
+
+Next step, after getting the gist of recommender systems was to narrow down on the existing systems and practices at Tuenti. Since the company has grown quite rapidly in the last two years, a full suite of training material exists to help introduce engineers to the systems. Despite each tutorial being quite short, it took more or less the entire day to go through the first stuff, check out code, and set-up environment properly. 
+
+Tomorrow I will focus on analysing the existing recommendation systems. 
