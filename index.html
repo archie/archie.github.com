@@ -17,10 +17,12 @@ title: log.scalethis.se
 <div class="post">
   <h2 class="title">Older posts</h2>
   <div class="entry">
-	<p> {% for post in site.posts offset:1 %}
-	<a href="{{ post.url }}">{{ post.title }}</a> - {{ post.date | date_to_string }} in 
-	<em>{{ post.categories }}</em> <br />
-	{% endfor %}    </p>
+	<p> 
+		{% for post in site.posts offset:1 %}
+		<a href="{{ post.url }}">{{ post.title }}</a> - {{ post.date | date_to_string }} in 
+		<em>{{ post.categories }}</em> <br />
+	{% endfor %}
+	</p>
   </div>
   <p class="meta">Listing all posts</p>
 </div>
