@@ -14,8 +14,13 @@ h1. Introduction
 
  * recommendations for personalisation and increased interaction
  * problem with scale, optimizing algorithms or sampling the data
+ * little systems research in this area
  * building a recommendation system which serves millions of users
  * Supporting a range of content: videos, games, photos, albums, friends, places, pages 
+ * main contributions: 
+  ** a system which supports several content types
+  ** able to update according to recent contextual information
+  ** evaluation on big data sets
 
 h1. Background
 
@@ -35,7 +40,7 @@ Problems / Limitations of existing systems
 
 h1. Method
 
-Something about the research method(s) used. This is TBD.
+Something about the research method(s) used. Big TBD.
 
 h1. System / Architecture
 
