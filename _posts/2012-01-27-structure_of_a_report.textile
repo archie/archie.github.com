@@ -14,7 +14,7 @@ h1. Introduction
 
  * recommendations for personalisation and increased interaction
  * problem with scale, optimizing algorithms or sampling the data
- * little systems research in this area
+ * little systems research on collaborative filtering and recommender systems (mostly on algorithms)
  * building a recommendation system which serves millions of users
  * Supporting a range of content: videos, games, photos, albums, friends, places, pages 
  * main contributions: 
@@ -33,7 +33,7 @@ Definitions
 Describe current solutions to the growing amount of data
  * it has mostly focused on algorithm enhancement and/or downsizing the data
  * some algorithms are being ported to mapreduce, for example through the mahout project
- * other attempts include graphlab which uses a bulk asynchrounous processing model, but still lacks widespread production use as it has limited support for distributed computations 
+ * other attempts include graphlab which uses something like a "bulk asynchrounous processing" model, but still lacks widespread production use and has limited support for distributed computations 
  * biggest published system on recommendation systems is google news personalisation. The algorithms are simplified and system specific to Google's infrastructure
 
 Problems / Limitations of existing systems
