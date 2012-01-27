@@ -1,0 +1,76 @@
+---
+layout: default
+title: Architecting Recommendation Systems for Web-Scale Data
+category: ideas
+---
+
+To evaluate the current thesis proposal I challenged my "EMDC colleague Lalith":http://lalith.in (who is doing some awesome work with wireless networks at T-Labs in Berlin) with the following question: 
+
+bq. Let's hypothetically say the name of my thesis is "Architecting Recommendation Systems for Web-Scale Data". What would you expect to read in it? 
+
+Well, as it turns out his answer, although significanly shorter, matched the following, highly tentative, outline of a report quite well. I've updated it a bit to include Lalith's feedback. Now I should verify this with my supervisor at UPC too.
+
+h1. Introduction
+
+ * recommendations for personalisation and increased interaction
+ * problem with scale, optimizing algorithms or sampling the data
+ * building a recommendation system which serves millions of users
+ * Supporting a range of content: videos, games, photos, albums, friends, places, pages 
+
+h1. Background
+
+Definitions 
+ * web-scale data
+ * collaborative filtering
+ ** model based - common approaches
+ ** memory based - common approaches
+
+Describe current solutions to the growing amount of data
+ * it has mostly focused on algorithm enhancement and/or downsizing the data
+ * some algorithms are being ported to mapreduce, for example through the mahout project
+ * other attempts include graphlab which uses a bulk asynchrounous processing model, but still lacks widespread production use as it has limited support for distributed computations 
+ * biggest published system on recommendation systems is google news personalisation. The algorithms are simplified and system specific to Google's infrastructure
+
+Problems / Limitations of existing systems
+
+h1. Method
+
+Something about the research method(s) used. This is TBD.
+
+h1. System / Architecture
+
+ * Data collection - capturing user feedback, and using it for online feedback
+ * Algorithms for computing recommendation model - dividing the model in two parts
+ * Serving recommendations
+ * Updating recommendations based on contextual data from a session, i.e creating relevant recommendations on the most recent user activities. 
+ * Components needed / Implementation
+  ** offline (non-realtime)
+  ** online (realtime)
+
+h1. Details
+
+ * Usage peaks - degrading quality of service depending on load
+ * Blacklisting, i.e removing recommendations that a user deemed irrelevant or has already seen
+ * Updating / creating new recommendations on the fly
+ * New users / cold start, i.e what to do when there are no previous history from the user
+ * HCI - How long time does it take to serve a recommendation vs better to change UI to improve effectiveness (TBD)
+
+h1. Evaluation
+
+*Quantitative*
+Measure existing recommendations and compare with new system
+ * accuracy of algorithm (not sure how relevant this is for a systems paper)
+ * accuracy vs load
+ * serving recommendations (latency / throughput)
+ * clicks/interaction
+
+Also check if it is quantatively comparable to any existing systems.
+
+*Qualitative*
+Architecture
+Flexibility / modularity 
+Scalability
+
+h1. Conclusion
+
+It will be awesome ;)
