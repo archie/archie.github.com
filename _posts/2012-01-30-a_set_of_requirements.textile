@@ -1,0 +1,29 @@
+---
+layout: default
+title: A set of requirements for a recommendation framework
+category: ideas
+---
+
+*Functional*
+ * recommend multiple types of content with different characteristics
+  ** videos
+  ** albums
+  ** friends
+  ** games 
+  ** (essentially this means supporting several recommendation algorithms)
+ * use implicit feedback data to calculate recommendations
+  ** views by users, click-through
+  ** support multiple collection points
+ * use explicit feedback data
+  ** ratings by a user
+ * record contextual information and use it instantenously to update a set of recommendations
+ * generate sets of recommendations for specific types and mixed sets
+ * be able to use data of different types to generate a specific type
+ * support post-processing filters on recommended sets
+
+*Non-functional*
+ * scale to millions of users
+ * support peak hours during which activity is significantly higher
+ * degrade gracefully if service is limited / unavailable
+ * easy to add and deploy new sets of recommendations
+ * make use of contextual information in realtime to update recommendations
