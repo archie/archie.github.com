@@ -4,9 +4,9 @@ layout: nil
 <?xml version="1.0"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>log.scalethis.se</title>
-    <link>http://log.scalethis.se/</link>
-    <atom:link href="http://log.scalethis.se/feed.xml" rel="self" type="application/rss+xml" />
+    <title>Thesis by @mljungblad</title>
+    <link>http://thesis.ljungblad.nu/</link>
+    <atom:link href="http://thesis.ljungblad.nu/feed.xml" rel="self" type="application/rss+xml" />
     <description>Documenting my way to a master thesis on building recommender systems</description>
     <language>en-us</language>
     <pubDate>{{ site.time | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
@@ -15,10 +15,10 @@ layout: nil
     {% for post in site.posts %}
     <item>
       <title>{{ post.title }}</title>
-      <link>http://log.scalethis.se{{ post.url }}</link>
+      <link>http://thesis.ljungblad.nu{{ post.url }}</link>
       <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
       <author>marcus@ljungblad.nu (Marcus Ljungblad)</author>
-      <guid>http://log.scalethis.se{{ post.id }}</guid>
+      <guid>http://thesis.ljungblad.nu{{ post.id }}</guid>
       <description>{{ post.content | xml_escape }}</description>
     </item>
     {% endfor %}
