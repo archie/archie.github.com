@@ -1,0 +1,13 @@
+---
+layout: default
+title: Usage analysis
+category: notes
+---
+
+Moving on from the code analysis that I did yesterday in order to understand the different systems and what they are made up of, I continued today with investigating their usage. 
+
+There are currently three recommendation systems in place at Tuenti: Friends, Places, and Videos. The former two have been around for a while, whereas Videos launched more recently. This, if nowhere else, can be seen in the code and the code practices used. There is currently no way of measuring whether a user uses the video recommendations, thus, tomorrow I'll try to set that up.  
+
+I wont share any specific numbers yet (hopefully I can do that later). But overall, it's been fun playing around with Hive and MapReduce. On a huge codebase it is obivously easy to get lost, and that happened more than once. Initially I didn't think there were any statistics at all for Places. It turned out, once I found where I wanted to add the data collection marker, that it was already there. However, it stored the values in another datastore which wasn't documented. Do'h! 
+
+Waiting for last MapReduce job to complete, then _ir a de casa_. 
