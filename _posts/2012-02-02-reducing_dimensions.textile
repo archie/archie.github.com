@@ -1,0 +1,30 @@
+---
+layout: default
+title: Reducing dimensions of the problem
+category: notes
+---
+
+Yesterday we, Toni and I, went for a meeting at Telefonica's offices to brainstorm about possible system solutions for building personalised video recommendations. Together with two system's researchers and two algorithm experts we banged our heads at the problem. 
+
+The problem, based on the current dataset, can be summarized as:
+
+bq. Given 40M videos and 13M users, recommend a personalised set (of length _k_) of videos using contextual information which the user may[1] like. 
+
+There are three parts to highlight here: 
+ # Each video is described by a vector of, for example, 20 factors, but can be many more. Hence, the 40M videos is represented by a 40Mx20 dense matrix. Let's say each factor can be described by 4 bytes (an int), then this matrix is roughly 3 Gb of data.  
+ # User preferences are also described by a vector, i.e also a rather large matrix. While the number of videos can be reduced, for example, by cutting the long-tail, the users cannot. In fact, the number of users is expected to grow significantly as Tuenti is expanding into new markets.
+ # Contextual information are things like browsing history, the last video viewed, browser settings, weather information, time of day, and whatever else you can think of. This too is represented by a vector and may change on every user action. 
+
+Some questions which arise from this are: 
+ # How large sample of the videos can we use? 
+ # How do we select the videos?
+ # How many factors describing the videos / users can we use? 
+ # How fast can we serve a recommendation request? (The time to load a page shouldn't exceed 200 ms)
+ # What time budget for each computation (offline and online) do we have / can we allocate?
+ # If a request cannot be served (in time), what fault-tolerance or fallback mechanisms do we use?
+
+The algorithms we're looking at uses matrix factorisation to compute a relevance matrix. One approach, as discussed in a previous post, is to split the recommendation computation in two parts. One off-line component which calculates a ranked list for each user, but excludes the contextual information. The second part is done on-line and here the contextual information is applied to the ranked list (by calculating the inner product of the two vectors). 
+
+Now, in order to reduce the dimensions of this problem, my next task is to estimate how much contextual information we can use and what size of the ranked list we can store based on current peak-load traffic and beyond. 
+
+fn1. <code>s/may/will/g</code> depending on your confidence in the algorithm / philosophical view. 
