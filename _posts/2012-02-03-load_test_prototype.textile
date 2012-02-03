@@ -1,0 +1,13 @@
+---
+layout: default
+title: Load test prototype
+category: notes
+---
+
+Spent most of the day yesterday doing a simple prototype of the online component. Most of the logic is in place, and the trick now is to test it under load with a realistic storage configuration. Realistic means MySQL and Memcache. In fact, the most realistic would be to run it alongside some production code and use real load to get accurate measures of throughput and latency. That'd be real awesome. However, we're not there yet, especially as that requires us to generate recommendation models for at least a subset of the users. 
+
+What struck me, again, yesterday is how we always lack small easy-to-use tools for generating load. "Nick":http://stream.nicholasrutherford.com/ and I faced a similar problem when building our "distributed lock service":https://github.com/nruth/gaoler/ and, especially Nick, considered building his own. Why is it that these tools rarely are part of our toolboxes? Sure, there are tools for load-testing, but too often they are clunky and overly sophisticated (JMeter and Tsung to name two). "Basho_bench":https://github.com/basho/basho_bench is one of the better I've seen so far. Set-up is relatively small and you could make it work with REST interfaces quite easily[1].
+
+What am I missing? "Let me know":mailto:marcus@ljungblad.nu. 
+
+fn1. It is primarily targeted at Erlang applications and was initially written to test the "Riak":http://basho.com/products/riak-overview/ database. 
