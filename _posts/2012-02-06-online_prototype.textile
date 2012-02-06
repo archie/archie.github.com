@@ -6,7 +6,7 @@ title: On-line computation cost
 
 Last Friday I hacked together an experimental on-line recommender in PHP to evaluate time spent on computation vs size of datasets. Here are some preliminary (discouraging) results using a local memcache setup and the following configuration: 
 
-Users in memory: 500, Concurrent clients: 10, Ranked list length: 100, Item vector size: 20
+Users in memory: 500, Concurrent clients: 10, Ranked list length[1]: 100, Item vector size: 20
 
 !/images/500_10_10.png!
 
@@ -34,3 +34,5 @@ PHP4 was still the mainstream version when I last hacked stuff using PHP. And ob
 PHP is extensive. There seems to be functions for almost everything. Thus having a browser and "php.net":http://php.net open is essential. On the other hand, keeping the code easy to understand felt like a challenge. With experience this ought to be less of an issue. For example, using arrays as both dictionaries, lists, and tuples quickly made me realise I was reading my own code over and over again to see what was being passed around. Thank you Netbeans for auto-completing my very long variable and function names. :) 
 
 Lastly, I found myself looking for threading capabilities to run multiple clients concurrently. Turns out there is no such thing in PHP. Instead I ended up writing a python script to wrap my php script in. Epic fail. Naturally, PHP doesn't come from a multi-threaded usage, it relies on whatever webserver to handle each request individually and thereby making it multi-threaded. 
+
+fn1. This is the result of the partial model generated off-line and it is unique for every user.
