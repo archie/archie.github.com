@@ -1,0 +1,13 @@
+---
+layout: default
+category: thoughts
+title: Recommendations from a philosophical view
+--- 
+
+Quite some time ago I came across a TED talk about "filter bubbles":http://blog.ted.com/2011/05/02/beware-online-filter-bubbles-eli-pariser-on-ted-com/ which emphasize the risk of search engines filtering content which suite your particular taste. Especially how this filtering is narrowing our worldview and, in the long term, how it may affect democracy. The talk is worth watching and relates clearly to recommendation engines. In fact, there exists a debate about what is personalised search and personalised recommendations. Many argue that it is all the same, and that search is irrelevant these days. Personally I believe the difference in use is what makes the distinction. In _search_ I actively look for material that I wish to find, whereas for _recommendations_ I'm exposed (un)willingly to interesting content. 
+
+The New York Times article "If you liked this, you're sure to love that":http://www.nytimes.com/2008/11/23/magazine/23Netflix-t.html?_r=1&pagewanted=all highlight another perspective of recommendations: that of culture. 
+
+bq. [Prof. Pattie Maes] notes that there’s something slightly antisocial — “narrow-minded” — about hyperpersonalized recommendation systems. Sure, it’s good to have a computer find more of what you already like. But culture isn’t experienced in solitude. We also consume shows and movies and music as a way of participating in society. That social need can override the question of whether or not we’ll like the movie.
+
+Both the filter bubble and hyperpersonalisation can probably be minimised by introducing some randomness, or negating the result (looking for contradicting views). The latter being more algorithmically challenging. However, that will also impact your trust in the recommendations provided, potentially causing you to ignore them completely. And that isn't really what we're after... 
