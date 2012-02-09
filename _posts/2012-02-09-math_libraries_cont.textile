@@ -1,0 +1,11 @@
+---
+layout: default
+title: Math libraries (cont)
+category: notes
+---
+
+And the winner is "Eigen":http://eigen.tuxfamily.org/index.php?title=Main_Page! 
+
+Yes, it wasn't even mentioned in the previous post. In fact I mixed the names of uBlas and Eigen up. Perhaps not a big surprise that C++ outperforms the others. More significant is that the library is single-threaded and yet compares faster than the parallel libraries jBlas and ParallelColt. The difference, however, is marginal: ~6900 ms vs ~7900 ms. 
+
+The jumbo spot is, also not surprisingly, held by PHP. Memory explodes after 1M items for which it takes a rock-steady 220 seconds to compute <code>m*m.transpose()</code>.
