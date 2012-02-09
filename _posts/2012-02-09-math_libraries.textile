@@ -1,0 +1,30 @@
+---
+layout: default
+category: notes
+title: Evaluating math libraries
+---
+
+Matrix factorization isn't an algorithmically cheap technique. Quite the opposite. Most algorithms are based on approximating the values until the root mean squared error is sufficiently small (the definition of small is yet another variable to decide on). 
+
+There is one particular operation which has both a large memory and cpu footprint: 
+
+<code>matrix * matrix.transpose()</code>
+
+Looks innocent? However, the matrix has the following dimensions: 20 x 40,000,000 which complicates things a bit. In fact, it could be a lot larger (and many others probably calculate much bigger matrices), but at the same time it is only a tiny part of the whole equation. 
+
+That said, Toni and I have spent some time profiling existing math libraries which provides smart matrix data structures and efficient algorithms. At the moment we have tried the following: 
+
+ * *Java*
+  ** ParallelColt
+  ** Apache Commons Math
+  ** jBLAS
+ * *Scala*
+  ** Scalala
+ * *C++*
+  ** uBLAS
+ * *PHP*
+  ** PEAR_Math
+
+We haven't got the final verdict yet, but let's say PHP is struggling way behind. We couldn't even get it to run on matrices larger than 1,000,000. 
+
+Stay tuned! 
