@@ -1,0 +1,9 @@
+---
+layout: default
+title: Drawing sequence diagrams
+category: tips
+--- 
+
+Yesterday I had a need to persist my (fancy) sequence diagram that I had jotted down on a piece of paper to illustrate the flow of a request in the system. It seems my notebook is not as reliable as a backed-up mercurial repository... I discussed with "Nick":http://stream.nicholasrutherford.com/ and "Patrik":http://blog.padowi.se/ to find *easy, expressive yet simple, and free* tools for drawing these types of diagrams.
+
+I settled on "WebSequenceDiagrams":http://www.websequencediagrams.com/ which neatly solved the job (albeit not free in the true sense). Patrik later pointed me to "BlockDiag":http://blockdiag.com/en/ which *is* free and also looks straightforward. Next time I'll give it a shot! 
