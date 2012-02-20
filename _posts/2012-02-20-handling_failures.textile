@@ -1,0 +1,18 @@
+---
+layout: default
+category: notes
+title: Handling failures
+--- 
+
+In a meeting earlier today the question of handling machine failures was raised. Dealing with failures is obviously something one cannot take lightly and there are several approaches available. It is always, however, good to first explicate the requirements. What user-experience do we want to provide? In some scenarios (like when withdrawing money) it is not ok to fail, while in others (getting your friend's latest facebook update) some degree of failure is ok. In extreme cases, maybe it is even ok to tell the user that the service is unavailable, although that is more certain to stir up some frustration.
+
+Secondly, one need to think about what level of failures to handle. There's huge difference between handling machine failures and datacenter failures. Dealing with machine failures can be addressed within the application or using external hardware components. There's also a design decision (or philosophical decision) to make whether the system should be aware of what type of failure guarantees it can provide or not: i.e cluster or machine-aware. Each will require different semantics and consistency considerations. 
+
+In the service component that we're building for generating recommendations on-the-fly, we can integrate methods for replication of the data model to increase availability of recommendations to serve. There are, at least, four possible replication schemes with varying complexity to consider:
+ 
+ # If the whole model fits in RAM it can be replicated on all machines. Since, at least initially, the model is only updated once a day, there are few consistency issues to worry about. As long as the cluster can handle all incoming requests all but one machine may fail. 
+ # If the whole model does not fit in RAM, it can be sharded and replicated amongst a subset of machines in the cluster. This could result in certain parts of the model not being available to recommend, but if the index used to keep track of the itemsets is kept up to date, the "most similar" items can still be served. Here a subset but one machine may fail to ensure that some data is served (albeit it may not be the most accurate recommendations).
+ # An alternative to version two is to split the data such that only some users are affected by machine outages. This would depend on how the model is split across the cluster and how the index of the itemsets are kept up to date.  
+ # Finally, one alternative is to not do any replication to handle failures and simply serve static or no recommendations at all if a failure occur.
+
+Perhaps the question we should ask ourselves is: How little redundancy can we get away with?
