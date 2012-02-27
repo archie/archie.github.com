@@ -1,0 +1,23 @@
+---
+layout: default
+title: Finding the best set of sets
+category: notes
+--- 
+
+As I've mentioned previously doing on-line recommendations of all 40M videos and 13M+ users isn't exactly reasonable (within the time constraints given). We've been approaching the problem by creating a partial model offline and then loading this one to memory of the online cluster. When a request arrives, we complete the recommendation by applying the user preferences and session context. Sounds good in theory and we're now in the stage of evaluating whether this also works in practice. 
+
+Since it is unreasonable to go through all 40M items online and select the top-K items from such a large list the idea is to cluster the items in smaller sets. Lets say, for example, that each cluster is 10 000 items large[1], then we'll end up with 4 000 such sets. Out of those we need to pick only a few, and preferably those should also be the most relevant sets to the user's session. 
+
+*Enter minhash.* The algorithm works by generating signatures of larger sets such that they can be compared against each other faster. One of the more popular (and easy) ways to measure similarity is using the Jaccard similarity which basically is <code>setA.intersection(setB).length / setA.union(setB).length</code>. Applying the Jaccard similarity measure on the signature sets turns out to be a very good approximation on the true similarity.  
+
+How are signatures generated? I hacked together this function to create them: 
+
+<script src="https://gist.github.com/1922816.js"> </script>
+
+It takes a character matrix of the sets that we want to "compress" and a list of random hash functions. Each hash function is some variation of <code>Ax+1 mod l</code> where <code>l</code> is the height of the character matrix. 
+
+As we would still end up with the same number of signatures as the original, it may still be too computationally expensive to discover which sets are the most relevant. We can combine the technique of minhashing with _Locality Sensitive Hashing_ to reduce the number of comparisons required to find similar items. This algorithm groups signatures into buckets by hashing portions of each set (think of it as horizontal slices of the signature matrix). The intuition is that multiple columns can be hashed to the same bucket, thus indicating that they are similar. The likelihood of similarity increases with the size of the slice (or band is it is also called). Consequently, this algorithm's drawback is that it yields both false positives and false negatives and I'm yet unsure to what extent this affects the quality of future recommendations. 
+
+For a more detailed explanations of the Minhash and Locality Sensitive Hashing algorithms I suggest reading chapter 3 in Rajaraman and Ullman's book on "Mining of Massive Datasets":http://infolab.stanford.edu/~ullman/mmds.html  
+
+fn1. Computing the predicted ratings of 10 000 items for a user takes only a few milliseconds using jBlas.
