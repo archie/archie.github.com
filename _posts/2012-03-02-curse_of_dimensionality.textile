@@ -1,0 +1,19 @@
+---
+layout: default
+title: Curse of Dimensionality
+category: notes
+--- 
+
+Came across an interesting phenomena a few days back when I was reading about dimensionality reduction, i.e using techniques to reduce the number of dimensions of some data. At that time I didn't know a term exists to describe it: "The curse of dimensionality":http://en.wikipedia.org/wiki/Curse_of_dimensionality. "Kevin Lacker":http://www.quora.com/What-is-the-curse-of-dimensionality explains the problem in simple terms on Quora:
+
+bq.. Let's say you have a straight line 100 yards long and you dropped a penny somewhere on it. It wouldn't be too hard to find. You walk along the line and it takes two minutes.
+
+Now let's say you have a square 100 yards on each side and you dropped a penny somewhere on it. It would be pretty hard, like searching across two football fields stuck together. It could take days.
+
+Now a cube 100 yards across. That's like searching a 30-story building the size of a football stadium. Ugh. 
+
+p. After three dimensions it becomes difficult to find physical metaphors, and the problem is more evident when dimensions increase significantly. You see the challenge? The phenomena is found in several areas related to analysing or interpreting data, for example, data mining. When I first started working on recommendations using matrix factorization I thought 20 latent factors to describe a user's preferences sounded like quite a lot of dimensions. As far as my memory can tell, I've never written an application where I needed more than a three or four. Thus, 20 dimensions was rather abstract. Today it's less so, although some of part of the recommendation modelling is still equivalent to "black magic":http://en.wikipedia.org/wiki/Black_magic. 
+
+While working on the implemenation of Minhash and Locality-Sensitive hashing I've come to realise that 20 dimensions are still pretty few and, luckily, the curse of dimensionality _might_ not be kicking in. Because the challenge is that some algorithms that are designed for low dimensions perform horrible on large dimensions, and vice versa. Good for me I guess :) 
+
+Now lets see... where was I?

@@ -1,0 +1,26 @@
+---
+layout: default
+title: Meeting my supervisor
+category: notes
+---
+
+I started my thesis work in January and haven't since met my academic supervisor. In fact, I didn't really have one until two weeks ago. Today I met Prof. "José L Balcázar":https://twitter.com/#!/PepeBalcazar. 
+
+We discussed a number of things, some which might be useful to highlight are: 
+
+*Deviations*
+
+All projects drift. Whether we like it or not does not matter, they all drift. Each project also drifts differently; some fluctuating weekly or even daily, and some over a long period. One of the reasons I'm keeping this blog is to be able to track a the project's drift. Prof. Balcázar also suggested taking a minute or two everyday looking at all the pieces of the puzzle and the relationship between the pieces. The day they do not make sense or the process takes more time than two minutes it is time to spend a few hours thinking through everything thoroughly. 
+
+*Scope* 
+
+bq. One of my task as your supervisor is to make sure you do not build a website and sell it as a master thesis with fancy words like Joomla. In your case we have a different problem: to make sure you do a master thesis and not a PhD thesis. 
+
+This has, and still is, one of the major challenges for me too. There are simply too many interesting threads to follow up on and narrowing down on the most important ones is hard. Within the next few days I'll try to write down a title of my thesis as a way of defining the scope more precisely.
+
+*The Second System Effect*  
+
+We also discussed second-generations of software, particularly with respect to the problem you are trying to tackle. The term above is from "Fred Brooks's":http://en.wikipedia.org/wiki/Fred_Brooks quintessential book "The Mythical Man-Moth":http://en.wikipedia.org/wiki/The_Mythical_Man-Month in which he describes the effect as the second version of a system being bloated and clunky compared to the first version. It is certainly something to have in mind, especially as Tuenti already have a naive recommendation engine for video content (although as mentioned earlier it does not account for contextual data or user preferences).
+
+Overall, I'm very happy and I'm looking forward to his valuable insights on this project. For the next meeting I also hope to present something in writing. Should be a good push to get started with the text too, even if only extremely rudimentary. 
+ 
