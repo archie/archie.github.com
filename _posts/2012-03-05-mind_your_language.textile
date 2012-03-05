@@ -1,0 +1,13 @@
+---
+layout: default
+title: Mind your language
+category: random
+---
+
+In Erlang we often refer to processes as children, and shutting down a child is often called _kill children_. What a horrible thought! In Scala the processes are referred to as actors and we kill those too. Albeit slightly better than slaughtering unknowing youngsters. 
+
+*nix is also a part of a dark conspiracy with _killall_ and its violent sibling _kill_.  
+
+C, on the other hand, is a happy language. There data is set _free()_, which sounds like we're letting it of to a better place. I like that.
+
+Where did language designers get their brutal metaphors from? 
