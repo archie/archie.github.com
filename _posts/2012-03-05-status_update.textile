@@ -1,0 +1,25 @@
+---
+layout: default
+title: Status update
+category: notes
+---
+
+Compiled a todo-list of things to implement / look at. No priorities assigned yet and everything is probably not relevant. 
+
+ * Check architecture against original plan and update accordingly
+ * Investigate distributed setup and testing with Akka
+ * Remote actors identification and lookup - discovery of remote nodes
+ * Change load-balancer to support remote actors
+ * Dynamically redistribute itemsets if node is down or itemset is unavailable or overloaded -> this implies changing the index-mechanism too.
+ * Fake lookups of preferences
+ * Gossip health status of itemsets 
+ * Load and register itemsets to actors and trigger reload 
+ * Define bootstrapping procedure
+ * Add proper configurability
+
+And less code related
+ * Define a preliminary title for the thesis
+ * Draft an outline of the report to next supervisor meeting
+ 
+"Work work!":http://www.wowwiki.com/Quotes_of_Warcraft_III/Orc_Horde#Orc_Peon
+ 
