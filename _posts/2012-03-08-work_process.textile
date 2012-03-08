@@ -1,0 +1,39 @@
+---
+layout: default
+title: Work process
+category: ideas
+--- 
+
+One of the most exciting things with building an online recommendation system from scratch is that one can apply many different concepts and theories in practice, especially concepts from a courses and litterature that we have studied in EMDC. At the same time, it is very dangerous. In this post I thought I would outline a bit about the work process. Partly to get it down on paper for later reference, and partly to track how (and if) it evolves. 
+
+h3. Pre-system development
+
+In order to get an idea of the complexity and the architecture of the online recommendation system, both Toni and I spent considerable time in the beginning reading papers, testing libraries, evaluating existing systems, and most importantly, building throw-away prototypes. We built prototypes in Scala, PHP, and Python covering specific aspects of the offline algorithm, the online part, as well as more general architectual concepts. 
+
+h3. Iterations
+
+I've tried to divide the development of the system in two week iterations (most teams at Tuenti also work in two-week sprints). The idea is that each iteration should finish with all tests passing, and that every part of the system have received some attention (even if only minor edits). 
+
+As with all early development, the code is very instable and parts sometimes changes several times a day. There have been days where I come to work the following morning and thinking "what the he** did I write yesterday". Luckily, there are days where the opposite is true too and I can direct my attention to another part of the system.  
+
+Before finishing the second iteration (which according to my initial plan should be done on March 15) I wanted to make sure I have touched upon all the areas of the system. Most components so far are very dumb, some return static values, other more comprehensive results. However, it does hang together and seeing the integration tests pass makes you feel good. Gradually I'm replacing each of the stubs and, for example, yesterday I spent most time sketching out the gossip algorithm that will share information about the available itemsets and their respective current load. Eventually this data will be made available to the load-balancer (instead of the current brute-force load-balancing which is in place now). 
+
+h4. Writing
+
+A thesis is no thesis without a written report. At least as far as I know. Though I haven't started writing anything yet my intention is to do so shortly. My supervisor asked if I could bring something in writing until our next meeting, which so happen to coincide with my second iteration deadline. Text, as much as code, require thinking, editing, refactoring, in short a lot of attention. Thus I feel it would be a good idea to already now devote some time every week to writing[1]. 
+
+h3. Deadlines
+
+As I know them today:
+
+* Iteration 2: March 15 - all parts outlined in system, at least stubs
+* Iteration 3: March 30 - recommendation routing 
+* Iteration 4: April 15 - load-balancing
+* Iteration 5: April 30 - metrics 
+* Iteration +: This is still too far off to say anything about. I could argue that even end of April is way too far ahead. Well, it's never too late to change it around a bit.  
+
+And the current plan is to present the thesis in June. 
+
+Work work!
+
+fn1. This isn't really anything new but somehow it is always difficult to start on time and writing tends to be left for the last minute. 
