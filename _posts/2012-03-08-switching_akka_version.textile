@@ -1,0 +1,28 @@
+---
+layout: default
+category: notes
+title: Worth migrating from Akka 1.3 to 2.0?
+--- 
+
+A few days ago "Akka 2.0 was officially released":http://akka.io/news/2012/03/06/akka-20-released.html. It's been available as a release candidate for a while and should be fairly stable (sufficient for what I'm working on). However, the new release isn't as easy to migrate too as one would wish. It includes several changes to the API and structural changes to how actors are created and accessed.
+
+That said, "Typesafe et al":http://typesafe.com/ have made an effort to "smooth the transition":http://doc.akka.io/docs/akka/2.0/project/migration-guide-1.3.x-2.0.x.html for developers by packing the "old api" in an isolated jar which can run alongside the 2.0 code. This enables gradual migration of code. Though it looks "easy" on paper, I'm not convinced it is as easy in practice. 
+
+Pros of switching:
+ * ActorSystems which makes it possible to run multiple akka deployments on the same JVM - this is a huge win for testability and to me seems like one of the major design improvements in akka 2.0. 
+ * Geting access to the new Router package would simplify the implementation of the load-balancer
+ * Nicer APIs :) 
+ * The codebase is still relatively small so it is easier to switch now
+ * Google's references to the docs would be more useful. Today I often manually have to switch back to 1.3 only to discover that the feature I was looking at doesn't exist.  
+ * Living on the edge is fun
+
+Cons:
+ * Akka 1.3 works 
+ * It would take time from new development
+ * As "Lalith":http://lalith.in pointed out "you can do a PhD on an old release", i.e there is no need to switch
+ * Most blogs with tips and tricks on akka mostly refers to 1.3 (obviously this changes over time)
+ * All the unknowns that I have to face if switching 
+
+Moreover, there are some intriguing items on the (unofficial?) "roadmap":https://docs.google.com/document/pub?id=1CMz_MEQA8oPcGw9oaFdq_KYYFB_5qZjsDYYwuXfZhBU&pli=1 of akka, specifically with respect to clustering and elasticity. These properties are often challenging to develop (at least in Erlang, and I believe it is the same in akka 1.3) and it keeps reappearing as an issue. Making it part of the akka-library should open quite a few new doors. 
+
+Lets think about this migration decision over lunch. 
