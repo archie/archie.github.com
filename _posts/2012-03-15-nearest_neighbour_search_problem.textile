@@ -1,0 +1,27 @@
+---
+layout: default
+category: notes
+title: Routing to the most relevant itemset(s) 
+---
+
+The dataset I'm working with contains more than 40M items and we want to be able to use most of it to make recommendations online. It is unfeasible, as we have seen in measurements, to compute the most relevant sets from the entire dataset for three reasons: the average compute time is too high for real-time responses, the entire dataset has to be stored in memory (depends on your machine obviously), and finally, as the dataset grows this approach will not scale horizontally.
+
+There are, at least, two approaches to address the dataset size. First, by discarding "old" data or removing portions of the long-tail it would be possible to reduce the dataset size significantly. Reducing the size may impact the quality and scope, or breadth, of the recommendations made. It remains to be determined how many items are sufficient to generate adequately relevant recommenadations. 
+
+The second alternative, and the one I'm currently working with, assumes we can split the dataset into smaller chunks during the off-line computation. Each chunk represents a cluster of related items which are constructed offline by some clustering algorithm. For the moment I only assume these chunks are made available to the online cluster somehow. This leads to the following challenge which can be formulated as: 
+
+bq. When a recommendation requests arrives to a node in the cluster, how do I know which chunk of items to use when generating the recommendations?
+
+The recommendation request has the user's preference factors, and in the future context information, attached to it. Given that each chunk can be described by a centroid, a unique representative id, I could formulate a distance function to identify which chunk is closest to the user's preferences and/or session context. The approaches that I've looked at for determining the most relevant chunk(s) are locality-sensitive hashing and kd-trees, both which are known solutions to the nearest-neighbour search problem. "Read this for a nice introduction to LSH":http://www.slaney.org/malcolm/yahoo/Slaney2008-LSHTutorial.pdf.
+
+Now, my worries with the LSH approach are several: 
+
+ * can the centroids correctly describe the chunks? 
+ * does LSH or the chunks mask the advantages of the matrix factorisation model and the eventual re-ranking with the user preferences? 
+ * so far I've only tried an LSH implementation using signature hashes (which are used to reduce the dimensionality into an approximation). This is easy as the signatures contain only positive integers. However, if I were to skip the signatures (there are not that many dimensions anyway) the LSH would have to operate on the latent factors directly, making me unsure how to define the hash functions.
+ * maybe this is overly complicated for what I'm trying to achieve, are there any simpler alternatives for nearest-neighbour? Perhaps if I can mix in some domain specific knowledge it becomes a lot simpler? 
+
+There's also a (big?) chance I'm looking at the problem in the wrong way. I'm kind of stuck at this problem at the moment. 
+
+
+
