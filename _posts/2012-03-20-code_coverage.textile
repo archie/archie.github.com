@@ -1,0 +1,25 @@
+---
+title: Code coverage in Scala
+category: notes
+layout: default
+---
+
+Before I continue with iteration 2 I wanted to review how I'm testing what I'm building. In essence, I try to follow "TDD":http://en.wikipedia.org/wiki/Test-driven_development as strictly as possible. Meaning, I run the tests before writing any code to ensure that it really does break or fail, implement the feature/function, run the tests again, refactor, test and repeat. 
+
+However, as the code evolved I felt there were cases, especially corner-cases, not being tested at all. Especially a I had a creepy suspicion that one of my tests was trying to cover too much in one go, and hence when it failed it was hard to pinpoint its cause, many times leading to the old-school printf() debug technique. 
+
+To investigate I hooked in the "Jacoco Code Coverage plugin":https://bitbucket.org/jmhofer/jacoco4sbt/wiki/Home to "sbt":https://github.com/harrah/xsbt and ran @jacoco:cover@. 
+
+!/images/jacoco_overview.png(Overview of code coverage report)!
+
+My immediate reaction was: *25%?! WTF!?!*
+
+There's a catch, or a short-coming in the Jacoco tool, though. As numerous classes are extended or have traits mixed-in, especially the Akka-actors, there is a lot of unused code. One could argue, correctly so, that there should be test-cases trying some of these scenarios. For example, what happens if an actor is killed in the midst of processing a request? This will trigger code in branches that are never executed during normal operation. 
+
+On the other hand there is also more mysterious pieces of code.
+
+!/images/jacoco_details.png(Detailed code coverage report)!
+
+It's a bit hard to see in the screenshot, but there seems to be some "partial functions":http://ofps.oreilly.com/titles/9780596155957/FunctionalProgramming.html that evade the tests almost completely. These, as far as I can tell, are coming from the Akka libraries. Similar to functions which are unused in traits and extended classes it would be interesting to have an option in Jacoco to exclude these from being evaluated. 
+
+Consequently, after going through the report in more detail my initial WTF has been reduced. The fact remains, however, that one test in particular is absolutely too broad in scope. Fixing this now.    
