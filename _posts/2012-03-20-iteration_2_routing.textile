@@ -1,0 +1,16 @@
+---
+title: Iteration 2 - Routing
+category: notes
+layout: default
+---
+
+Yesterday I finished the first, albeit fairly naive, version of finding the right chunk of itemsets to use for recommendations (described here). As I kind of hinted at myself I was overdoing it and a much simpler solution was the way to go. But in spite of this awareness, finding the actual solution is never as easy. Many thanks to Linas and Toni for their input which lead to a working routing mechanism.
+
+With a "complete" prototype of the system, this also marked the end of the first iteration (three days later than planned). In this second iteration I will narrow in on the routing further by exploring the following: 
+
+ * Alternative routing mechanisms to cosine-similarity
+ * Hierarchical routing, i.e chunks may be grouped together in a tree
+ * Parallel requests, combining results from multiple chunks in a "roll-up"-like function
+ * Continuous measurements on real(istic) data
+
+Except the obvious surprises of course. 
