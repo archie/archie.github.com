@@ -1,0 +1,20 @@
+---
+category: links
+layout: default
+title: Writing every day
+---
+
+Before I started working on this thesis I had the idea that I would write something everyday. To date there are 39 posts here, which two and a half month in, suggests I'm not exactly there. That said, the idea of writing everyday is twofold. It is to track my progress with the thesis, and secondly, it is to see how my learning and perception of the work changes over time. 
+
+Fred Wilson, the guy behind with "the popular blog AVC":http://www.avc.com/ recently gave a short talk about "why he is blogging":http://entrepreneurdesigners.tumblr.com/post/19635228919/week-4-what-is-a-company-and-why-does-one-start-it. One particular thought of his resonate with me: 
+
+bq. By putting it down on paper, it helps me crystalise my thoughts on that [matter].
+
+It is many times for this reason that whatever appears on this blog is not always straightforward to anyone else. In other words, I write what is valuable to me more so than for anyone else. No offense. My personal blog at "ljungblad.nu":http://ljungblad.nu contains a broader mix, but mostly I write for exactly the same reason there.  
+
+Many people blogging, writing, or producing stuff in general have a fear of shipping. A fear of pressing send on that e-mail, or publish on that blog post. It can be quite intimidating to get things wrong, but that will happen once in a while whether you want it or not. I tend to believe I got over the shipping part, and this ultimately lead me to appreciate when people take time to give constructive feedback more. 
+
+Finally, Fred continues by suggesting that you _write opinion_. This is beautiful and why, or this sucks and explain why. Always explain why. It relates to "crystalising your thoughts" and is more valuable than just recalling It's a good advice that I'll try to adopt a little more. 
+
+Food for thought. 
+
