@@ -1,0 +1,15 @@
+---
+category: notes
+title: Re-run with bigger dataset
+layout: default
+--- 
+
+Last Friday I started to run with real-size data in the prototype. Some rudimentary testing indicated it worked fairly well and today I wanted to see how it ran using the JMeter tests that I had defined a few weeks back. 
+
+Everything runs on my machine with 4 cores. However, since the test is always requesting recommendations for the same user this isn't really a fair test. Each request will be routed to the same cluster of recommendations, and hence, to the same actor. This also means that Tomcat can do its optimisations (whatever those may be) and ensure that the data that is being requested frequently is cached. 
+
+I want to refactor some code to increase fault-isolation and concurrency amongst the actors and the data they are in charge of. Once that is done I will try to create a more dynamic test. 
+
+!images/load-over-time-v2.png!
+
+Good part is, graphs so far looks okish. Except for the blue line which indicates responses are lost. The 90th percentile is completed around 8.5 ms. 
