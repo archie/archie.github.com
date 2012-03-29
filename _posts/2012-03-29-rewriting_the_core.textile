@@ -1,0 +1,44 @@
+--- 
+layout: default
+title: Rewriting the core
+category: code
+--- 
+
+Last Monday I began focusing on the details of load-balancing between the nodes in the cluster generating recommendations. In this post I'll outline roughly what I want to achieve.
+
+The recommendation model consists of a few gigabytes of partially computed recommendations. As I've talked about before, it is unrealistic to generate recommendations from the entire set fast enough, and hence I split the data in smaller clusters. Today it is possible to run and load clusters of recommendations on a single machine. There is one worker per cluster and a router ensuring each recommendation request is forwarded to the most relevant worker. A worker is essentially a separate process implemented as an Akka Actor. Once the request reaches the worker it computes the top-K recommendations using whatever-algorithm to do so. 
+
+By now you will recognise at least two challenges with this design: 
+
+ # the router may become a bottleneck, and
+ # some clusters are bound to be more popular than others and, hence, receive significantly more requests
+
+Lets see each of these in more detail. 
+
+One can argue that the first point is prematurely trying to optimise something which may not be a problem unless load is extreme[1]. The second point, however, is a real issue. We know that a few videos are watched a lot more times than the rest. There are some more tricks here but that's related to the model generation and out of scope right now. For now all we know is that some clusters will receive more requests than others.
+
+*Cluster popularity* 
+Since one worker is responsible for only one itemset, it is easy to spawn more workers responsible for the same itemset. In my first prototype this was not the case. After having refactored the prototype did I not only improve fault-isolation and concurrency, but also reduce code complexity and cut the number of lines to a third. Retaining all the functionality from before. It's quite rewarding to see how a design becomes simpler and simpler the more you work with it. 
+
+There are more advantages to essentially replicating the workers working on the same (non-shared) cluster. Workers can be assigned the same itemset but running on different nodes. Thus also improving fault-tolerance in case of node failure. This, however, is another detail that I have not begun exploring yet and will have to wait too.
+
+Design-wise I'm facing a number of questions related to the replication procedure: 
+
+ * Who replicates workers?
+ * When and on what grounds is replication triggered?
+ * How will this work when a worker may be started at any node?  
+
+Compared to Nick I'm not "trying to do any fancy machine-learning algoritms":http://stream.nicholasrutherford.com/post/20022459072/abstract-1 to determine when to increase the number of workers per itemset. What I'm looking for is a rudimentary approach that works good enough.  
+
+*Routing bottleneck*
+A router consists of a registry which maps cluster signatures to workers. Determining the worker to use is based on calculating the cosine-similarity between the signature and the context that is attached in the request. With a dataset with 40M items, each cluster containing 40K items, the registry contains 1000 signatures. The registry needs updating if a worker process is killed, is restarted, or added. The router is also implemented as an Akka Actor and thus share no memory with other processes. Due to updates to the registry it becomes more cumbersome to replicate the router as data consistency have to be considered. For example, if a worker dies it must be updated in both routers. 
+
+Granted, consistency is not our biggest concern. After all serving recommendations is an add-on feature to the total user experience. And if they are not completely in sync or up to date with the available workers then the controller will automatically return default recommendations (for example most watched videos this week). Needless to say, we want to minimise the number of misses. 
+
+My idea for now is to add some kind of listener at each router. It would track all live workers, and if one dies, remove it from its registry. The question then becomes: who is responsible for ensuring a new worker is added in its place? I could have the workers register with each router as they start. The drawback with this approach (I tried it in my first prototype) is that creating the registry becomes a tangled mess with some possibly uninstantiated data that continuously need to be checked. 
+
+Even if I do not run multiple routers on one node, there still has to be routers on each node, all able to tell where all workers are. Akka provides location transparency (same as in Erlang). So maintaining the registries up to date is still an issue. 
+
+Suggestions? Bring them up in #emdc@freenode or "e-mail":mailto:marcus@ljungblad.nu. 
+
+fn1. Note to self: measure this
