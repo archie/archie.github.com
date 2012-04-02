@@ -1,0 +1,41 @@
+---
+category: review
+title: Paper review - Fast Top-k retrieval for Model Based Recommendation
+layout: default 
+--- 
+
+I've noted earlier that there is very little research published on the systems of recommender systems. Either it is completely uninteresting (I don't think so), research doesn't need them to be big, and/or companies are not willing to disclose their system system details. Or a combination of all. Who knows? However, once in a while I stumble over articles and posts that are related and relevant for my thesis and last week Linas suggested reading "Fast Top-k Retrieval for Model Based Recommendation":http://dl.acm.org/citation.cfm?doid=2124295.2124354. While it is not a system's paper directly, the authors (D. Agarwal and M. Gurevich) emphasize that new approaches must be developed to improve recommendation request performance. 
+
+In essence they are tackling the same problem as I'm trying to do at Tuenti. The item inventory (using their terminology) is too vast to explore for brute-force methods for computing the recommendation online. The authors continue to note that previous research mostly focused on reducing the itemset, for example by discaring older items), using some form of heuristics to minimise the set, or optimising the model algorithms. 
+
+Similar to the approach we're exploring at Tuenti they divide the computation in two stages. Each item is represented by a sparse feature vector and a query item. The relevance score is computed by the dot-product of the two vectors. _What is significantly different between their assumptions and mine is that for them a large item inventory consists of 50 000 items, whereas I assume large is in the ranges of tens of millions._ They address the scale by computing an inverted index for the documents in the first stage (remember we're trying to route using cosine-similarity). 
+
+*Recommendation model*
+Their approach of creating the model is not based on item content and meta information. Instead they "_learn_ [item] vectors by minimising the deviation from the original scores [of a function], while ensuring sparsity to reduce the index size." It basically boils down to the following equation: @ascore(d,q) = sum(q,d)@ where @d@ is the weight of the document learned from some offline machine-learning model and @q@ is the query context (such as user preferences and session context). When the request arrives, they check q against the index and returns the top-K documents using the previous @ascore@-function. There are a lot more details but will not address that here. 
+ 
+Using the index, they, as far as I understand, approximate the model. Hence the goal is to reduce the approximation error as much as possible, and they claim to do so by up to 85% on synthetic and real datasets. 
+
+There are many interesting points in their paper though, here are some: 
+ * Previous research has focused on accuracy but not on retrieval
+ * They treat the original model as a black box, same as I do. In other words, the system is model- and item-agnostic. 
+ * In their related work, they note that some people cached results for similar queries. An interesting twist tackle the problem. 
+ * The index construction is parallelisable to item-level. 
+ * They can do incremental updates and it is easy to add new items since there is no item-interdependency once the model-function is obtained (during offline computation). 
+ * Query distribution changes over time, hence model should be recomputed regularly. 
+ 
+*Evaluation* 
+In my opinion they provide a relatively strong evaluation using three different datasets. Two of them are synthetically generated (10k items each) to expose specific properties in which their appoach should face challenges. The third dataset (50k items) is taken from an ad-serving site. Unfortunately for me the datasets are far from the sizes that I was hoping for.
+
+Obviously their model outperforms those that it compares to, except for in one synthetic case which was specifically designed to be a pain (basically there are no dependencies between items and their model is designed to work with some inter-dependencies). Interestingly though the two other datasets are highly non-linear and thus should be challenging to approximate. Still they perform well.   
+
+Finally, as for retrieval times, they claim on average 14-16 ms for the first stage (inverted index lookup) for 100 documents. I haven't tried retrieving that many documents yet, but for 20 items I'm in the lower 5 ms range for the 90th percentile, including parsing the HTTP request and packing the response as json-data. 
+
+*Two favourite quotes*
+
+Under-utilised CPU anyone? 
+
+bq. The prototype was implemented as a single-threaded Java application and run on an Intel Xeon 2.0 Ghz 8-core machine with 32gb ram. 
+
+and a nice metaphor
+
+bq. Since the total number of all possible cross-products are _astronomical_, the features are hashed into a large number of bins. 
