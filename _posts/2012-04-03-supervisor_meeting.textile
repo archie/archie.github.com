@@ -1,0 +1,23 @@
+---
+layout: default
+category: notes
+title: Supervisor meeting
+--- 
+
+This morning I headed up to UPC for another meeting with my academic supervisor. Updated him on the latest development which in short are: 
+
+* major rewrite of the core functionality to improve fault-isolation and concurrency (and ended up with a lot cleaner codebase)
+* primitives for load-balancing and replication in place
+* performance measures indicate no measurable overhead with the latest developments - request handling is still primarily consumed by getting the top K items. 
+* writing the system architecture in the report (still more to do here)
+
+We agreed that by the end of next week I will send a first draft for him to review my writing and structure of the thesis in more detail.
+
+The upcoming challenges that I'm currently aware of are (in no particular order): 
+
+* testing using a multi-node setup (multiple JVMs)
+* generate model based on an experimental offline algorithm implemented by Linas
+* concretise the load-balancing and replication 
+* write :) 
+
+Work work! 
