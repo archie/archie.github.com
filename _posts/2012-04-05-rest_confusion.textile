@@ -1,0 +1,24 @@
+---
+layout: default
+category: notes
+title: REST confusion (again)
+---
+
+This REST business is very confusing. Well, it is confusing becuase of the debate of what is really REST and what is not. In the true sense I mean. 
+
+I tend to refer to the recommendation system's external interface as REST although I'm not sure it really lives up to the standards set out by "Fielding":http://roy.gbiv.com/. REST dictates that the HTML request should be as readable as possible. Furthermore, GET implies the request is side-effect free and can thus be cached. Fielding's blog post on the "POST/PUT argument":http://roy.gbiv.com/untangled/2009/it-is-okay-to-use-post explains why. As far as I can tell from his other blog post "REST APIs must be hypertext-driven":http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven I think I'm on the right track. 
+
+Querying the following today: 
+
+@http://service.domain.com/api/users/<id>/recommendations?factors=<list of numbers>&quantity=<int>@
+
+will simply yield:
+
+<pre>
+{
+	"recommendations" : [[Item, Relevance], [Item, Relevance], ... ]
+	"itemset" : Id
+}
+</pre>
+
+Nothing more nothing less. Can this be called REST or is it simply a HTTP GET request with a response in a JSON format? 
