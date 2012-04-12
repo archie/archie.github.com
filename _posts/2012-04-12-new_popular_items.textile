@@ -1,0 +1,15 @@
+---
+layout: default
+category: notes
+title: New popular items
+--- 
+
+One of the challenges with using a matrix factorisation method for generating recommmendations is that new items can only be accounted for when the model is generated. And this happens only once in a while. Das et al who published the "Google News paper":http://doi.acm.org/10.1145/1242572.1242610 argues that because news item churn is high (news get old within 2 days roughly) they want to include new items in the recommendations immediately. 
+
+At first I thought this was an issue for me too. Now I think I've concluded that it is not really such a big issue because there are really few cases where you require items to be recommended so fast. 
+
+Some "researchers at Yahoo! argue along similar lines":http://melmeric.files.wordpress.com/2011/12/from-chatter-to-headlines-harnessing-the-real-time-web-for-personalized-news-recommendation.pdf to Das but with respect to tweets. In other words, they want to be able to recommend content from tweets that are so recent that even waiting for model regeneration would be too time-consuming.  
+
+In my opinion, one could, argue that for news and tweets it is unnecessary to recommend the very very latest content. Instead we can treat the problem of new items separately. Possibly as a problem of detecting trends. The results of such process can easily be mixed-in with the recommendations if need be. This would enable one to focus on making good accurate recommendations without immediately worrying about new items. 
+
+Now, there happens to be some work on "online updates to matrix factorisation models":http://doi.acm.org/10.1145/1454008.1454047 too, but that is far beyond the scope of my thesis. 
