@@ -1,0 +1,22 @@
+--- 
+layout: default
+title: Working with Scala
+category: notes
+---
+
+Scala is a fascinating language. It was new to me when I started on the thesis but my colleage from Telefonica promoted it, and there are some legitimate reasons for us to use it too. 
+
+* It runs on the JVM. This is a significant advantage as we can use any java-library directly from Scala, for example "jBlas":http://jblas.org/ for some heavy-duty math computations. 
+* It is functional making it a bliss to convert mathematical algorithms to code. It reads more or less the same way. 
+* It is object oriented (huh?!) providing nice and easy ways to re-use and encapsulate code
+* It is compact. At least more compact than Java and there is less worrying about catching exceptions thanks to pattern matching. 
+* The "Akka-library":http://www.akka.io provides an actor model closely resembling Erlang's. One which I'm already familiar with and makes parallel programming a heck of a lot easier.
+* It has "ScalaTest":http://www.scalatest.org and "EasyMock":http://www.easymock.org (the latter is not Scala specific though) for writing specs and mocks. I prefer the WordSpecs.
+
+The combination of Akka and JVM's performance are two main reasons behind using Scala. However, at the same time Scala does, as any language, have some drawbacks. And particularly so for the novice Scala-hacker. 
+
+* There appears to be one too many ways of solving particular problems. I have a hard time figuring out the de facto standards. Perhaps as "this blogger":http://technically.us/code/x/the-awesomeness-of-scala-is-implicit/ put it: "Scala is almost too clever for its own good."
+* The sbt build tool is not as polished as it could be. It feels sluggish at times and repeatedly runs out of memory after a day usage or so (despite following the instructions to increase PermGenSize). 
+* I have a hard time getting dependency injection "done right" when testing. Jonas Bonér wrote a good post on the cake pattern, but when objects starts to rely on actors and their replies it becomes a mess too. Maybe I'll write a separate post on this later.
+
+Let's see what comes next. For now I quite enjoy hacking in Scala and Akka. 
