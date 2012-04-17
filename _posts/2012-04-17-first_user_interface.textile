@@ -1,0 +1,14 @@
+---
+layout: default
+title: First user interface
+category: notes
+--- 
+
+!images/ui_v1.png(First user interface for recsys)!
+
+It rocks! Right?
+
+And a nice quote from the Instagram talk featured on the "High Scalability blog":http://highscalability.com/blog/2012/4/16/instagram-architecture-update-whats-new-with-instagram.html
+
+bq. Ideas are disposable: if one doesn’t work, you quickly move on to another.
+
