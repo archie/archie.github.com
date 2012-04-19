@@ -1,0 +1,42 @@
+---
+layout: default
+title: Towards real-world testing
+category: notes
+---
+
+Up until now I've mostly used fictitious examples to test the recommender system that's being developed. This data was generated with random numbers without any correlation whatsoever to real world events. Today, however, that changed. 
+
+One of the advantages of doing a thesis with a social network is that I can test with _real data_. This means true anonymised logs from users interacting with content on the site. In my case that is two months of click data from November and December last year, in total about 2 Gb worth of raw data for videos played. 
+
+In order to use the data there are a number of steps to be taken. As mentioned before the recommender system scales on the premise that we can divide the item factors for 40 million+ videos into clusters. Here is the bird's eye view of the process:  
+
+# count the number of plays per user-video pair (python)
+# run matrix factorisation and store the intermediate item and user vectors separately (java)
+# cluster the item vectors produced in step 2 - currently using @scipy.cluster.vq.kmeans2@ to do this (python)
+# load the data into the online recommendation system and start serving recommendations (scala) 
+
+*Counting*
+The data comes in the following format: @... userid videoid ...@ (the dots indicate play related data) and there's one line per play. A simple python script does the trick.
+
+<script src="https://gist.github.com/2422153.js"> </script>
+
+Since I need to verify the accuracy of the recommendation I create two sets: a training set used to build the model, and a test set which will be used to verify the results. The sets are the end-result of this process. 
+
+*Model generation*
+The implementation of the matrix factorisation algorithm is beyond the scope of my thesis (except for an understanding of how it works). I'm lucky to be able to use an existing implementation of "Koren's algorithm for implicit feedback":http://dl.acm.org/citation.cfm?id=1511352 provided by Linas and his team at Telefonica. They plan to open source the code and I hope to be able to assist them in that process. For now, it's enough to say that the result of this step consists of two files: one with all items' latent factors and one with all users' latent factors.    
+
+*Clustering*
+I'm really focusing on scalability more than the accuracy of the algorithms used. This is both an advantage and a drawback of my work. The advantage is I can be less picky about the model and how the data is supplied to the online recommendation system. Clustering is thus something I do not have to implement myself and, browsing a little for easy-to-use clustering implementations I finally settled on "scipy's k-means":http://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.vq.kmeans2.html. The "k-means algorithm":http://en.wikipedia.org/wiki/K-means_clustering is one of the easiest and works by grouping items into K clusters such that the item joins the cluster with the nearest mean of the items already in the cluster (see the Wikipedia article for a full explanation of the algorithm). Clustering with scipy is a breeze and the gist of the code is only four lines: 
+
+<script src="https://gist.github.com/2422239.js"> </script>
+
+The output is one file per cluster with the respective item vectors and a signature file with the centroids. The latter is used to initialise the last online recommendation system. 
+
+*Online*
+The recommender system reads the centroid file and spawns one process per centroid/cluster distributed across a set of nodes[1]. Each process loads its cluster into memory and registers itself as ready to accept recommendation requests. "Routers" on every node routes requests based on cosine similarity between the signature and the user's request. The request contains the user's latent factors and possibly contextual information such as the last video played. Once the best cluster is determined the request is forwarded to the process responsible for that cluster which in turn computes the recommendations. Finally, the top K recommendations are returned to the user.
+
+Easy peasy. 
+
+There are still some hurdles to tackle before I can test the system fully and say that it _really_ works. But today's progress is a good step in the direction of ensuring some form of qualitative results from my thesis. 
+
+fn1. There are still some details missing before it is fully distributed. It's coming. 
