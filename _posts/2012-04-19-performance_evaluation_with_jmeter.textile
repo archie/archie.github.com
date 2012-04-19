@@ -20,11 +20,11 @@ For our purposes I collected the following metrics:
 
 In order to determine the maximum capacity of the system I defined a test which I gradually increased the number of requests per second. Luckily there's a "Throughput Shaping Timer":http://code.google.com/p/jmeter-plugins/wiki/ThroughputShapingTimer to do exactly this! I suspected the system would start to behave weirdly around 1000 requests per second and thus defined the following. It increases faster in the beginning and then slows down, but steadily increases the throughput to a total of 1700 requests per second. 
 
-!images/throughput_shaping_timer.png(Throughput Shaping Timer configuration)!
+!/images/throughput_shaping_timer.png(Throughput Shaping Timer configuration)!
 
 The results below show that at around 1200 requests the system does start to behave weirdly. The blue line shows failed requests, and although I don't know exactly why yet, it turns out that the application is starting to spit out exceptions at this point.
 
-!images/throughput_shaping_results.png(Throughput Shaping results)!
+!/images/throughput_shaping_results.png(Throughput Shaping results)!
 
 It could be worse, it could be better. Measuring is the only way of knowing as another "classmate":http://stream.nicholasrutherford.com/ would have put it.  
 
