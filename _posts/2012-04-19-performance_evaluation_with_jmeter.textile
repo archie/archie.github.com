@@ -1,0 +1,31 @@
+---
+layout: default
+title: Performance evaluation with JMeter
+category: notes
+--- 
+
+A "classmate":http://paulormg.com/ asked in our irc-channel earlier today about performance testing the system he's working on. We discussed a bit about "JMeter":http://jmeter.apache.org/ and I thought I'd share the set-up I used to, in particular, determine the *maximum sustained throughput*.[1]
+
+More specifically:
+
+bq. The goal of these tests is to establish the approximate throughput of serving recommendations on-line and the number of machines required to handle today’s load at Tuenti.
+
+JMeter comes with good documentation for how to set up tests. I suggest starting with "this tutorial":http://jmeter.apache.org/usermanual/build-web-test-plan.html. It does not, however, come with particularly useful graphing tools. Instead I strongly recommend installing "the jmeter-plugins suite":http://code.google.com/p/jmeter-plugins/. 
+
+For our purposes I collected the following metrics: 
+* Response time over time
+* Response time distribution
+* Response time percentiles (cumulative distribution)
+* Transactions completed per second (throughput) 
+
+In order to determine the maximum capacity of the system I defined a test which I gradually increased the number of requests per second. Luckily there's a "Throughput Shaping Timer":http://code.google.com/p/jmeter-plugins/wiki/ThroughputShapingTimer to do exactly this! I suspected the system would start to behave weirdly around 1000 requests per second and thus defined the following. It increases faster in the beginning and then slows down, but steadily increases the throughput to a total of 1700 requests per second. 
+
+!images/throughput_shaping_timer.png(Throughput Shaping Timer configuration)!
+
+The results below show that at around 1200 requests the system does start to behave weirdly. The blue line shows failed requests, and although I don't know exactly why yet, it turns out that the application is starting to spit out exceptions at this point.
+
+!images/throughput_shaping_results.png(Throughput Shaping results)!
+
+It could be worse, it could be better. Measuring is the only way of knowing as another "classmate":http://stream.nicholasrutherford.com/ would have put it.  
+
+fn1. This may not be the most academic way of doing it, but it gave me sufficient data to know where to focus our efforts.  
