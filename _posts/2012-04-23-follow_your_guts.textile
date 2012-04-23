@@ -1,0 +1,24 @@
+---
+layout: default
+category: notes
+title: Follow your guts
+--- 
+
+This weekend I decided to dedicate *four* hours to an experimental upgrade from Akka 1.3 to Akka 2.0 of my thesis-system. There were a number of features in "Akka 2.0":http://akka.io that had attracted my attention and I was facing challenges with it in 1.3. 
+
+Several talented people, including my supervisor, rightly advised against such a move so late into the work. "Lalith":http://lalith.in pointed out that you can get away with your PhD on relatively old pieces of code. And true, a thesis probably shouldn't be tied to a particular version of your code, but rather to the theories that it explores. Nevertheless, I felt hunger to tinker was too great to control. To not completely go over board, I restricted my time for the upgrade to four hours so as to not endlessly continue along the lines "just this small change to and then I'm do... " Right. 
+
+Overall it was fairly successful. It took me four hours and 15 minutes to complete the transition. The pain of upgrading comes from the fact that Akka 2.0 isn't backwards compatible. APIs have changed, though reasonably well-motivated by the team behind it, it certainly isn't a straightforward change for projects with much larger code-bases than mine (core is less than 600 scala lines excluding tests). 
+
+*Wins:*
+* Remoting became a lot simpler. I'm now able to run recommendations across several nodes. 
+* Code readability improved with respect to actor creation
+* Less code (not really due to Akka 2.0, but in the process I got rid of some stuff that wasn't used)
+
+*Losses:*
+* I no longer have a REST-interface as the http-library I used isn't 2.0 compatible yet. Alternatives exists but I haven't explored this option. For now a command-line interface suffices. 
+* The bugs I haven't found yet due to the upgrade
+
+In the end I will follow my supervisor's dangerous advice:
+
+bq. For once (do not abuse this advice), listen to your guts. ;-)
