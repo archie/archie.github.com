@@ -1,0 +1,32 @@
+---
+layout: default
+title: How to evaluate a recommendation system?
+category: notes
+---
+
+As I'm starting to look into the evaluation of the system I was curious to find related work in this area. Linas suggested two papers which form the backbone of recommender system evaluation. Both of them are written by well-known researchers within the field. 
+
+* Herlocker, Jonathan L., Joseph A. Konstan, Loren G. Terveen, John, and T. Riedl. "Evaluating Collaborative Filtering Recommender Systems.":http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.78.8384 ACM Transactions on Information Systems 22 (2004): 5–53.
+* Ricci, Francesco, Lior Rokach, and Paul B. Kantor. Recommender Systems Handbook. Springer, 2010.
+
+I've began reading the "old" one by Herlocker et al to get an understanding of the basics. Here's what I've found so far. 
+
+* Evaluating recommendation systems and algorithms is difficult. It depends heavily on the data, its size and its properties. It is also difficult because the goals of evaluation differs. For example, some want to measure accuracy and some may be more marketing related (click-through). In the end it is user-satisfaction that counts. 
+* Begin with defining the end-user's goals and tasks. This should be the first point for any evaluation. For example, does the user simply want to _browse around_ or are they strictly interested in _finding good items_? 
+* Define the user, define the environment it operates in, and define the data. 
+* Data has different properties:
+** Is novelty prefered over accuracy? Items recommended may be highly relevant (i.e liked by the user) but already known. One may also consider the cost vs benefit of the recommendation. How computationally expensive is it to generate compared to the benefit or the click-through generated?  
+** Are the ratings implicit or explict? What other inherent features may exist, such as demographics or time?
+** Finally, what does the data itself look like? Sparse? Dense? Size and distribution. These are all important to consider when comparing algorithms between each other. Some algorithms are more suited to implicit ratings, but the same algorithm may perform horribly on data with explicit ratings. 
+* There are a number of commonly used measures in previous litterature. The most relevant for me, taking data into consideration, may be: 
+** Precision and Recall - normally these are measured together as they inversely affect one another. If Precision is higher, recall is lower, and the opposite. 
+** Mean Average Precision - is the average precision over several queries. 
+* They make a good point about accuracy not being all there is to recommendations. A more appropriate measure may be usefulness but that is a lot harder to evaluate. By including a measure (percentage) of the dataset that the recommendation system can provide predictions for[1], a measure for how fast an algorithm can produce recommendations, and a novelty measure, we can start to evaluate the usefulness aspect. 
+** An interesting version of coverage is "What percentage of available items does this recommender ever recommend to users?" This is related to my current experimental results on only few clusters being used to make recommendations. 
+** Learning rate is more closely related to the offline model in my case.
+** What strikes me about the novelty metrics proposed is how subjective they are. In fact, all recommendations are highly subjective and we're trying to quantitise them. 
+* First rule of recommender systems in e-commerce: "Don't make me look stupid!"
+* Eventually there has to be user evaluation. It may take many forms and is a field in its own right. However, it should at the very least focus on the defined goals and tasks that a user perform. 
+
+
+fn1. This is particularly interesting as one of the design goals for my thesis has been to be able to recommend from a large set of items, without stripping out for example old items. But with a large item catalogue it becomes impossible within the given time constraints to provide predictions for all items. 
