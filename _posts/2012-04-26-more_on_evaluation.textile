@@ -1,0 +1,19 @@
+--- 
+layout: default
+title: More on Evaluation
+category: notes
+---
+
+Guy Shani and Asela Gunawardana contributed a chapter on evaluating recommendation systems to the heavy book: The Recommender Systems Handbook. A book which litterally covers everything, with the possible exception of papers covering the architecting recommender systems for scale. 
+
+Shani's chapter did not add much new information than that given by Herlocker et al. They add upon it, of course, especially with respect to measuring confidence, and they dig further into user studies. But overall I think there was nothing of particular interest. Probably I don't have sufficient background knowledge to appreciate it. However, they did include a section on scalability which I thought was relevant.
+
+For anyone with a system's background it isn't news (but I suspect it may have been for some of the algorithm lovers). Essentially, they suggest to measure:
+
+* complexity of the algorithm (including annotations whether it is cpu or memory bound)
+* behaviour as number of users and/or number of items grow
+* time to compute a recommendation (more commonly known as throughput and latency)
+* coverage, meaning how many of the items can be recommended within a given timeframe
+
+I need to decide which and how to do it and get going. 
+
