@@ -1,0 +1,12 @@
+---
+layout: default
+title: Planning evaluation
+category: notes
+---
+
+According to my initial plan I want to start doing the evaluation in May. This means that a majority of the code will be frozen soon too. I'm almost on track with that plan, but there are some areas of the code which are still subject to change. 
+
+Nevertheless, I've started to outline what I want to measure and tried to indicate its difficulty and usefullness. They are subject to change.  
+
+<iframe width='580' height='550' frameborder='0' src='https://docs.google.com/spreadsheet/pub?key=0AlCmHxEFYtFedHNwcVJ6SEVYdVEwUU54WTdmX1hGMHc&output=html&widget=true'></iframe>
+
