@@ -1,0 +1,17 @@
+---
+layout: default
+category: notes
+title: Illustrating matrix factorisation
+---
+
+As part of the report I'm including a section on the intuition behind matrix factorisation. Since I'm not the biggest fan of maths (it's fascinating when it works but basically I suck at it) I want a more illustrative example. Prefering code over mathematical equations I decided to include some pseudo-code. 
+
+!/images/als_pseudo.png(Alternating Least Squares pseudo-code)! 
+
+However, I'm not every happy with it. Too many abbreviations and complicated syntax. Nick suggested making fluffy functions out of the @upm[u,:]@ parts since they literally translate to "u'th row of matrix upm".
+
+Alternatively I could just stick to the original python code. 
+
+!/images/als_python.png(Alternating Least Squares python code)! 
+
+Hopefully with the examples I've provided it should be roughly understandable what one can achieve with matrix factorisation: approximating unknown values. 
