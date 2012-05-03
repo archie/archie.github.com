@@ -1,0 +1,43 @@
+--- 
+layout: default
+category: notes
+title: Towards distributed evaluation
+--- 
+
+Today is big progress day. One of the things that I've set out to evaluate is the scalability of the system. Specifically I want to investigate two things: 
+
+# how the system behaves as the quantity of data increases, and
+# the throughput and latency of requests that it supports
+
+Before I had used the "MultiJVM plugin":http://doc.akka.io/docs/akka/2.0/dev/multi-jvm-testing.html for Akka to test with multiple JVMs locally. Today I've refactored the code and enabled it to run from a scriptable number of machines.
+
+When a node starts it registers with a nameserver, as a confirmation on its registration it is sent a list with all other nodes that are also registered. From here on there are two different paths. If the node is first to join the cluster it will become responsible for populating the cluster with data. Hence, once the second node joins it will before alleviating load from the first node, ask if there is data that still hasn't been loaded and prioritise that. The number of data itemsets a node can load depends on its memory capacity. If there are no new data itemsets to load when a node joins it will automatically alleviate load from the existing nodes. Any node can thereafter serve incoming recommendation requests. 
+
+Pretty cool. 
+
+Now I need to sort out two bugs that I've not been able to catch with the much smaller test cases that I had with the local setting. Afterwards I have to identify all failure-cases that I handle and those that I do not. 
+
+<pre>
+> run 127.0.0.1 2552 127.0.0.1:2550
+[info] Running recsys.Main 127.0.0.1 2552 127.0.0.1:2550
+Using configuration: 
+[
+ address: 127.0.0.1:2552
+ path: /Users/marcus/tensor/
+ filename: data.out
+ replicas: 1
+ nameserver: 127.0.0.1:2550
+ nodemaxcapacity: 5
+]
+[INFO] [05/03/2012 18:03:03.149] [run-main] [ActorSystem(recsys)] 
+	REMOTE: RemoteServerStarted@akka://recsys@127.0.0.1:2552
+[INFO] [05/03/2012 18:03:03.251] [run-main] [ActorSystem(recsys)] 
+	REMOTE: RemoteClientStarted@akka://nameserver@127.0.0.1:2550
+Bootstrapping recsys cluster.
+New id: 0 worker: Actor[akka://recsys/user/$a]
+New id: 1 worker: Actor[akka://recsys/user/$b]
+New id: 2 worker: Actor[akka://recsys/user/$c]
+New id: 3 worker: Actor[akka://recsys/user/$d]
+New id: 4 worker: Actor[akka://recsys/user/$e]
+Recsys running. Press 'return' key to exit.
+</pre>
