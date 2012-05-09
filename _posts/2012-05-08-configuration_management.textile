@@ -1,0 +1,33 @@
+---
+layout: default
+category: rant
+title: Configuration management
+---
+
+One thing that I find notoriously hard to get right in every project I'm working on is _configuration management_. 
+
+It sucks. 
+
+There are always a pletheora of libraries, tools and techniques claiming to have tamed the unicorn. To make matters worse everyone uses different notations, different instantiation methods, and different access methods. 
+
+For a while I thought Scala+Akka had found the holy grail: "ConfigFactory":https://github.com/typesafehub/config. Now I'm not all that convinced after having struggled with for a while. It's probably two reasons at play: first, documentation is rusty at best making it hard to interpret what the load() function really does (I ended up looking at the source code to find out it didn't do at all what I expected it to do). Secondly, I'm probably doing something wrong, especially with respect to getting the design right.
+ 
+Configuration libraries worthy their names have at least the majority of the following properties: 
+
+* use a big-name markup language for describing the config file (json, yaml, or possibly xml although it is usually bloated)
+* support tree-like organisation of configuration properties
+* once instantiated in your application be globally accessible (singletons are bad but configurations are application-cutting)
+* be composable to multiple files if needed
+* support the overriding of settings using for example system environment or vm variables 
+* be instantiated once and only once in runtime, meaning the settings once instantiated are immutable (runtime variation is a whole other matter (I wrote a thesis on it))
+* be mockable/replaceable for test environments 
+* provides a small and intuitive api
+* preferably come with decent documentation and sample implementations
+
+ConfigFactory by Typesafe actually fulfills most of above out of the box. 
+
+The world doesn't need yet another configuration library, so don't expect me to start hacking on one. Perhaps I'll fork ConfigFactory one day and fix its broken parts, for now I've hacked my way around its major shortcoming (globally accessible settings). 
+
+Your mileage may vary...
+
+@</rant>@
