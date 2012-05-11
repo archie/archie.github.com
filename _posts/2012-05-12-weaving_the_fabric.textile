@@ -1,0 +1,22 @@
+--- 
+category: notes
+layout: default
+title: Weaving the fabric
+--- 
+
+After the last days dispair fighting with packaging jar files and configuration management in order to deploy the system on a set of servers, I've yesterday worked with something delightful: Fabric. 
+
+I posed this question to a hacker-friend of mine: what is the easiest way to deploy and run a set of configuration commands on five machines. The only requirement? It shouldn't take me forever to set-up. 
+
+He immediately posted a snippet of python code using the Fabric library. 
+
+"Fabric":http://docs.fabfile.org/en/1.4.2/index.html#usage-documentation is a "tool for streamlining the use of SSH for application deployment or systems administration tasks". And what's more, it's super-easy to use and has good documentation!
+
+By defining small tasks, which are composeable, you declare commands to run on remote machines. You can execute commands locally too. With three commands and a few tasks I had the whole procedure set-up: Packaging jar files, moving them to one of the remote servers, distributing them from there to the others (our upload capacity is kind of slow), uploading the test data, generating a configuration template, uploading this one, generating host-specific configurations based on the template, and finally (re)starting the application. 
+
+Generating and uploading configuration files look like this:
+<script src="https://gist.github.com/2658496.js"> </script>  
+
+And can be run by issuing @fab prepare_config:data=sample,maxcap=20 config@. 
+
+Happy deploying! 
