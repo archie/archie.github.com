@@ -1,0 +1,21 @@
+---
+layout: default
+title: Unix tools
+category: notes
+--- 
+
+I'm often impressed by the pletheora of tools available in *nix environments. It's incredible how these small and composable applications have evolved and is creating an amazing ecosystem. The "do one thing and do it really well" truly drives their design. 
+
+There are three tools, two of which are default in any *nix environment and one which follows similar principles: @mktemp@, @nohup@ and @dtach@, that I've used to deploy the recommendation engine.  
+
+*nohup* enables you to start other applications that does not listen to the SIGHUP signal. The SIGHUP signal is sent to all processes that are spawned by a terminal. For example, if I log in using SSH to a remote machine and start an application, it will automatically recieve a SIGHUP when I logout from the SSH session. Nifty, but not always desirable. @nohup@, hence, solves this issue by disabling the the listener. 
+
+<pre>nohup java -jar recsys.jar app.conf > /tmp/recsys.log 2>&1 & echo $! > recsys.pid</pre>
+
+*mktemp* does exactly what it says, it makes temporary files. @mktemp -n /tmp/recsys.XXXX@ can for example be used to create a log file that I can pipe output to. 
+
+*dtach* is not bundled with the OS per se but I found it to be a pretty handy complement to its more heavy-weight big brother @screen@. Using @dtach -c /tmp/app.session app@ you start an application in a separate terminal session. With @-c@ you are not attached to it by default. If you want to attach to it, simply issue @dtach -a /tmp/app.session@
+
+*nix is a great example of good software design. 
+
+<3
