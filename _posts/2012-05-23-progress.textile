@@ -1,0 +1,13 @@
+---
+layout: default
+title: Progress!
+category: notes
+---
+
+Compared to last week's miserable results. Today it is looking a lot better. 
+
+*Bad*
+!/images/depressing_results.png(Bad results)!
+
+*Better*
+!/images/throughput_good.png(Better results)!
