@@ -1,0 +1,15 @@
+---
+category: notes
+layout: default
+title: The value of instrumentation
+---
+
+As I'm continuing to take measurements on the recommendation engine's performance I'm becoming increasingly aware of the value of instrumentation. Several noteworthy bloggers and companies repeatedly talk about it. The mantra follows something along the lines "if you don't instrument, you have no clue what is happening." It couldn't be more true. 
+
+Being a project that has mostly been confined to my development machine and small-scale tests, there hasn't been a strong need for looking inside. Various log.debug() messages coupled with some grep/awk magic have so far been sufficient. 
+
+At the time of writing a 5-minute performance test is running. During this time I have essentially no insight into what the system is up to. Only when I get the results back and can plot the graphs will I know how it performed. Considering that I do not trust the software that I've written (I wouldn't do that till I see it run for a substantial amount of time) it seems it would have been a good time investment to set up better run-time metrics. 
+
+Developed by the guys behind "Yammer":https://www.yammer.com/, I found "Metrics":http://metrics.codahale.com/ - a Java library to easily extract information from deployed code. It can export the information to both "jconsole":http://java.sun.com/developer/technicalArticles/J2SE/jconsole.html (handy tool to see what's happening inside your JVM), as well as the more large-scale tools "Graphite":http://graphite.wikidot.com/ and "Ganglia":http://ganglia.sourceforge.net/. It looks promising for code running in production (which it was designed for), but perhaps not the most optimal tool for development/performance testing. 
+
+At the moment I don't have the time to explore Metrics further, but will definitely put it in my toolbox.
