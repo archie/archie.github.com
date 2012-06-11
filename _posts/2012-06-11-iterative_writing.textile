@@ -1,0 +1,22 @@
+---
+layout: default
+category: notes
+title: Iterative writing
+---
+
+As I was rewriting the conclusion I realised how often I start on sentences and then ignore them. The following is a snippet of abandoned sentences from one paragraph of my conclusion. 
+
+bq.. As a result, the prototype developed to test the concept 
+
+The recommendations are taken from a substantial item catalogue of tens of millions of items. 
+
+Our results show that describe the concept here
+
+Secondly, the accuracy and performance results
+
+We identified a number of improvements that can be made: 
+- scaling routing
+- minimizing inter-node traffic
+- auto-adjusting load
+
+p. Throwaway-prototyping...
