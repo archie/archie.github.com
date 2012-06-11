@@ -1,0 +1,30 @@
+---
+layout: default
+category: notes
+title: Writing writing
+--- 
+
+Haven't provided much of info here in a while, so here comes a short update of what I've done: 
+
+* writing, rewriting, trashing, and writing introduction again
+* got first draft of report reviewed by my supervisor
+* fixing comments from supervisor
+* making some exploratory development to see the effect of parallelisation - not sure it will make it into the report
+* taking measurements - specifically something called Mean Average Precision which I'm using to measure the accuracy of the recommendation results. I'll try to write a more detailed post on this soon. 
+* procrastinating
+* thinking that my report suck and mentally thrown it out of the window a few times
+* found inspiration and solutions to problems when I least expected it
+* writing and working from cafées around Barcelona. It is incredible how much more productive I am in these places. 4 hours with a good view of people passing by equals around 6-7h of office productivity. 
+
+Now, back to writing. Here's the rest of my TODO: 
+
+* rewrite abstract
+* finish conclusion
+* get the last MAP numbers into the report and explain them
+* update two figures
+* review the layout
+* write acknowledgements
+
+I can kind of see the finishing line somewhere over there. 
+
+Rock on!
