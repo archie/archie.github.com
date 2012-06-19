@@ -1,0 +1,29 @@
+---
+layout: default
+category: notes
+title: Thesis delivered
+--- 
+
+As it turns out I handed in my thesis last Friday! I have quite mixed feelings about it. Part of me says that's great, the other part says more like "but why didn't you think of that?!" 
+
+Last few weeks were a bit crazy as I was working to get the measurements I wanted to support (or counter) some decisions. The report could certainly do with some more polishing, if not content, at least layout-wise. Making things pretty gives bonus points right? 
+
+Anyway, the last weeks' hard work culminated in an internal presentation for the engineers at "Tuenti":http://www.tuenti.com. I tend to like doing presentations (and planning them). Although I ended up being very short of time for the preparation, I felt happy with the delivery. The slides are very sketchy (attached below) and I hope to refine them, and the content, for the final presentation this coming Friday.  
+
+Questions I remember: 
+* Why matrix factorisation? 
+* How could you address the router bottleneck? 
+* What is the memory and cpu utilisation? 
+* On what machines did you run the experiments? 
+* What clustering algoritm was used to cluster the items? 
+
+Comments received afterwards: 
+* More details about the system including the setup and the tools used (Scala+Akka)
+* A bit too fast through the architecture
+* Focus a little bit more on scalability
+* There's a simpler way to explain matrix factorisation (I'm all for making things simpler)
+* (Own comment) Too slow through the motivation - cut down and focus on _the_ most essential
+
+This was the first presentation I did where part of the audience was available on video-link. It felt awkward and hard to connect with them. Also, I did the presentation sitting down (our video conference room is not great for standing remote presentations). Sitting, however, I will try to avoid in the future as that made me feel restricted.
+ 
+<div style="width:425px" id="__ss_13377702"> <strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/mljungblad/thesispresentation-tuenti-engineering" title="Thesis-presentation: Tuenti Engineering" target="_blank">Thesis-presentation: Tuenti Engineering</a></strong> <iframe src="http://www.slideshare.net/slideshow/embed_code/13377702" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0" allowfullscreen></iframe> <div style="padding:5px 0 12px"> View more <a href="http://www.slideshare.net/" target="_blank">presentations</a> from <a href="http://www.slideshare.net/mljungblad" target="_blank">Marcus Ljungblad</a> </div> </div>
