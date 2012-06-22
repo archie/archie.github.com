@@ -1,0 +1,25 @@
+---
+layout: default
+category: notes
+title: Online recommendations
+---
+
+Since January 12, 2012 I've been slowly working on my master thesis called _Online recommendations at web-scale using matrix factorisation_. Today I successfully defended it and can happily say I'm satisified with the results.
+
+Over the course of the semester this blog has served as a place to vent ideas and clarify problems for myself. Perhaps most of all it has been an experiment where I could document my progress. I wanted to, in retrospect, be able to see how my perception of the problem changed over time. As I learned more and more about the problem, how did my understanding change? What decisions led to progress and when did they not? Essentially it has been a tool for personal reflection on my learning process. After I have let the last few weeks sink in a bit, I will try to do a summary on my personal blog. 
+
+Anyway, for those of you who are interested, you "can download a full copy of the thesis":https://www.dropbox.com/s/kg1f0dc117wau07/Marcus_Ljungblad_thesis.pdf and read all about its juicy details. If you have any questions about the work, don't hesitate to shoot me an e-mail at "marcus@ljungblad.nu":mailto:marcus@ljungblad.nu.
+
+*Abstract*
+
+bq. In social networks, e-commerce systems, and other web-services the sheer size of available content is overwhelming. Highlighting relevant content is the focus of recommender systems. Most previous research in the area has provided several algorithms for personalising the user experience, but few have addressed the issues of scalability. In this study we show how matrix factorisation, one of the more accurate recommendation techniques, can be used to serve recommendations online for millions of items and millions of users. An approach based on dividing all available items in clusters and restricting the computation to a selected few is outlined. Consequently, we developed a prototype using requirements from a production environment to demonstrate its feasability. Experimental results show that 600 recommendation requests per second can be served with a latency below 30 ms. We conclude that matrix factorisation can be used online in large-scale settings but specific care has to be taken when clustering the items.
+
+And though it may not make much sense without me talking, here are the slides from this morning's defense.
+
+*The presentation*
+
+<div style="width:425px" id="__ss_13419633"> <strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/mljungblad/online-recommendations-at-scale-using-matrix-factorisation" title="Online recommendations at scale using matrix factorisation" target="_blank">Online recommendations at scale using matrix factorisation</a></strong> <iframe src="http://www.slideshare.net/slideshow/embed_code/13419633" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0" allowfullscreen></iframe> <div style="padding:5px 0 12px"> View more <a href="http://www.slideshare.net/" target="_blank">presentations</a> from <a href="http://www.slideshare.net/mljungblad" target="_blank">Marcus Ljungblad</a> </div> </div>
+
+This will also mark the last post on this blog. From now on you can only find me on "http://ljungblad.nu":http://ljungblad.nu. 
+
+So long and thanks for all the fish!
